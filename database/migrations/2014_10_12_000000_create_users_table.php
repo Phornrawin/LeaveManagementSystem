@@ -36,12 +36,12 @@ class CreateUsersTable extends Migration
             $table->foreign('supervisor_id')
                   ->references('id')
                   ->on('users')
-                  ->onDelete('cascade');
+                  ->onDelete('cascade')->nullable();
 
             $table->foreign('department_id')
                   ->references('id')
                   ->on('departments')
-                  ->onDelete('cascade');
+                  ->onDelete('cascade')->nullable();
         });
     }
 
