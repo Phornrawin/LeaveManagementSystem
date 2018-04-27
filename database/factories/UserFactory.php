@@ -14,10 +14,23 @@ use Faker\Generator as Faker;
 */
 
 $factory->define(App\User::class, function (Faker $faker) {
+    $department_ids = App\Department::all()->pluck('id')->toArray();
+    $user_ids = App\User::all()->pluck('id')->toArray();
     return [
-        'name' => $faker->name,
         'email' => $faker->unique()->safeEmail,
-        'password' => '$2y$10$TKh8H1.PfQx37YgCzwiKb.KjNyWgaHb9cbcoQgdIVFlYg7B77UdFm', // secret
+        'password' => bcrypt('secret'), // secret
+        'firstname' => $faker->firstname,
+        'lastname' => $faker->lastname,
+        'gender' => $faker->randomElement([
+            'male', 'female'
+        ]),
+        'image' => $faker->imageUrl($width = 640, $height = 480),
+        'supervisor_id' => $faker->randomElement($user_ids),
+        'department_id' => $faker->randomElement($department_ids),
+        'position' => $faker->word,
+        'tel' => $faker->phoneNumber,
+        'facebook' => $faker->username,
+        'line' => $faker->username,
         'remember_token' => str_random(10),
     ];
 });
