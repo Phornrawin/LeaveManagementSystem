@@ -56,6 +56,14 @@ class CreateLeavesTable extends Migration
      */
     public function down()
     {
+        Schema::enableForeignKeyConstraints();
+        Schema::table('leaves', function (Blueprint $table) {
+            $table->dropForeign(['user_id']);
+            $table->dropForeign(['substitute_id']);
+            $table->dropForeign(['category_id']);
+            $table->dropForeign(['task_id']);
+        });
+        Schema::disableForeignKeyConstraints();
         Schema::dropIfExists('leaves');
     }
 }
