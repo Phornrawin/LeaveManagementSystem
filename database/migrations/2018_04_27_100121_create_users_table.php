@@ -26,10 +26,10 @@ class CreateUsersTable extends Migration
             $table->unsignedInteger('supervisor_id')->nullable();
             $table->unsignedInteger('department_id')->nullable();
             $table->unsignedInteger('position_id')->nullable();
-            $table->string('position');
-            $table->string('tel');
-            $table->string('facebook');
-            $table->string('line');
+            $table->string('tel')->nullable();
+            $table->string('facebook')->nullable();
+            $table->string('line')->nullable();
+            $table->boolean('is_admin');
             $table->rememberToken();
             $table->timestamps();
 
@@ -37,17 +37,17 @@ class CreateUsersTable extends Migration
             $table->foreign('supervisor_id')
                   ->references('id')
                   ->on('users')
-                  ->onDelete('cascade')->nullable();
+                  ->onDelete('cascade');
 
             $table->foreign('department_id')
                   ->references('id')
                   ->on('departments')
-                  ->onDelete('cascade')->nullable();
+                  ->onDelete('cascade');
                   
             $table->foreign('position_id')
                 ->references('id')
                 ->on('positions')
-                ->onDelete('cascade')->nullable();
+                ->onDelete('cascade');
         });
     }
 

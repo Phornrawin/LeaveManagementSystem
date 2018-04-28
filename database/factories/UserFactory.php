@@ -14,6 +14,8 @@ use Faker\Generator as Faker;
 */
 
 $factory->define(App\User::class, function (Faker $faker) {
+
+    $position_ids = App\Position::all()->pluck('id')->toArray();
     $department_ids = App\Department::all()->pluck('id')->toArray();
     $department_id = $faker->randomElement($department_ids);
     $department = \App\Department::find($department_id);
@@ -29,10 +31,11 @@ $factory->define(App\User::class, function (Faker $faker) {
         'image' => $faker->imageUrl($width = 640, $height = 480),
         'supervisor_id' => $faker->randomElement($user_ids),
         'department_id' => $department_id,
-        'position' => $faker->word,
+        'position_id' => $faker->randomElement($position_ids),
         'tel' => $faker->phoneNumber,
         'facebook' => $faker->username,
         'line' => $faker->username,
+        'is_admin' => false,
         'remember_token' => str_random(10),
     ];
 });

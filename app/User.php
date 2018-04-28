@@ -4,10 +4,19 @@ namespace App;
 
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Foundation\Auth\User as Authenticatable;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 class User extends Authenticatable
 {
     use Notifiable;
+    use SoftDeletes;
+
+    /**
+     * The attributes that should be mutated to dates.
+     *
+     * @var array
+     */
+    protected $dates = ['deleted_at'];
 
     /**
      * The attributes that are mass assignable.
@@ -18,7 +27,7 @@ class User extends Authenticatable
         'name', 'email', 'password', 
         'firstname', 'lastname', 'gender', 'image', 
         'supervisor_id', 'department_id', 'position',
-        'tel', 'facebook', 'line',
+        'tel', 'facebook', 'line', 'is_admin', 
     ];
 
     /**
@@ -27,7 +36,7 @@ class User extends Authenticatable
      * @var array
      */
     protected $hidden = [
-        'password', 'remember_token',
+        'password', 'remember_token', 'is_admin'
     ];
 
     public function leaves() {
@@ -47,5 +56,8 @@ class User extends Authenticatable
     }
     public function subordinates() {
         return $this->hasMany('App\User', 'supervisor_id');
+    }
+    public function isAdmin() {
+        return $this->is_admin;
     }
 }
