@@ -23,6 +23,20 @@ class HomeController extends Controller
      */
     public function index()
     {
-        return view('home');
+        return view('profiles.index');
+    }
+
+    public function edit() {
+        $user = Auth::user();
+        return view('profiles.edit', $user);
+    }
+    
+    public function update(Request $request) {
+        $user = Auth::user();
+        $user->tel = $request->tel;
+        $user->facebook = $request->facebook;
+        $user->line = $request->line;
+        $user->save();
+        return redirect('/');
     }
 }

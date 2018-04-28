@@ -11,10 +11,10 @@
 |
 */
 
-Route::get('/', function () {
-    return view('layouts.master');
-});
+Route::get('/', 'HomeController@index');
+Route::get('/edit', 'HomeController@edit');
+Route::put('/edit', 'HomeController@update');
 
 Auth::routes();
 
-Route::get('/home', 'HomeController@index')->name('home');
+// Route::get('/home', 'HomeController@index')->name('home');
