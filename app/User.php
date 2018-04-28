@@ -29,4 +29,23 @@ class User extends Authenticatable
     protected $hidden = [
         'password', 'remember_token',
     ];
+
+    public function leaves() {
+        return $this->hasMany('App\Leave', 'user_id');
+    }
+    public function substitutings() {
+        return $this->hasMany('App\Leave', 'substitute_id');
+    }
+    public function supervisor() {
+        return $this->belongsTo('App\User', 'supervisor_id');
+    }
+    public function department() {
+        return $this->belongsTo('App\Department', 'department_id');
+    }
+    public function position() {
+        return $this->belongsTo('App\Position', 'position_id');
+    }
+    public function subordinates() {
+        return $this->hasMany('App\User', 'supervisor_id');
+    }
 }

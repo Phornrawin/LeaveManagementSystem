@@ -25,6 +25,7 @@ class CreateUsersTable extends Migration
             $table->string('image')->nullable();
             $table->unsignedInteger('supervisor_id')->nullable();
             $table->unsignedInteger('department_id')->nullable();
+            $table->unsignedInteger('position_id')->nullable();
             $table->string('position');
             $table->string('tel');
             $table->string('facebook');
@@ -42,6 +43,11 @@ class CreateUsersTable extends Migration
                   ->references('id')
                   ->on('departments')
                   ->onDelete('cascade')->nullable();
+                  
+            $table->foreign('position_id')
+                ->references('id')
+                ->on('positions')
+                ->onDelete('cascade')->nullable();
         });
     }
 
@@ -56,6 +62,7 @@ class CreateUsersTable extends Migration
         Schema::table('users', function (Blueprint $table) {
             $table->dropForeign(['supervisor_id']);
             $table->dropForeign(['department_id']);
+            $table->dropForeign(['position_id']);
         });
         Schema::disableForeignKeyConstraints();
         Schema::dropIfExists('users');

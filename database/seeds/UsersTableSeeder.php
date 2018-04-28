@@ -26,7 +26,9 @@ class UsersTableSeeder extends Seeder
         // $admin->facebook = 'Poy Chitsoonthorn'
         // $admin->line = 'poyzozozodiac';
         // $admin->save();
-        factory(App\User::class, 50)->create();
+        for ($i=0; $i < 50; $i++) { 
+            factory(App\User::class, 1)->create();
+        }
 
     }
 }
