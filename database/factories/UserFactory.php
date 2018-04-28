@@ -17,7 +17,7 @@ $factory->define(App\User::class, function (Faker $faker) {
     $department_ids = App\Department::all()->pluck('id')->toArray();
     $department_id = $faker->randomElement($department_ids);
     $department = \App\Department::find($department_id);
-    $user_ids = array_pluck($department->user, 'id');
+    $user_ids = array_pluck($department->users, 'id');
     return [
         'email' => $faker->unique()->safeEmail,
         'password' => bcrypt('secret'), // secret
