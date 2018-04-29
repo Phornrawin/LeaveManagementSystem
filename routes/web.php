@@ -21,6 +21,7 @@ Route::get('/subs', 'SubordinateController@index');
 Route::get('/subs/{user}', 'SubordinateController@show')->where('user', '[0-9]+');
 Route::post('/subs/{user}', 'SubordinateController@store')->where('user', '[0-9]+');
 Route::put('/subs/{user}', 'SubordinateController@update')->where('user', '[0-9]+');
+Route::get('/subs/assign', 'SubordinateController@create');
 //get file from storage
 Route::get('storage/{filename}', function ($filename)
 {

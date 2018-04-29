@@ -3,6 +3,8 @@
 @section('main')
 
 <div class="container">
+  <h3 class="display-4">My Subordinates</h3>
+  <hr>
   <table class="table table-hover">
     <thead>
       <tr class="table-primary">
@@ -15,7 +17,7 @@
     </thead>
     <tbody>
       @foreach($subs as $sub)
-      <tr class="table-secondary">
+      <tr class="table-light">
         <td scope="row">{{ $sub->id }}</td>
         <td>
           <a href="{{ url('/subs/' . $sub->id) }}">

@@ -121,7 +121,8 @@
                   <th scope="col">Substitute</th>
                   <th scope="col">Category</th>
                   <th scope="col">Task</th>
-                  <th scope="col"></th>
+                  <th>Status</th>
+                  <!-- <th scope="col"></th> -->
                 </tr>
               </thead>
               <tbody>
@@ -135,7 +136,8 @@
                   </td>
                   <td>{{ $leave->category()->first()->name }}</td>
                   <td>{{ $leave->task()->first()->name }}</td>
-                  <td>
+                  <td>{{ $leave->status }}</td>
+                  <!-- <td>
                     <div class="row">
                       <div class="col-sm-6">
                       </div>
@@ -158,7 +160,7 @@
                         </form>
                       </div>
                     </div>
-                  </td>
+                  </td> -->
                 </tr>
                 @endforeach
               </tbody>
