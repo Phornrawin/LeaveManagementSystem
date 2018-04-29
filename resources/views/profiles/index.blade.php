@@ -36,4 +36,11 @@ Leave Management System
         <div class="card-footer">
         </div>
     </div>
+    <hr />
+    <div class="card">
+        <h5 class="card-header">My Recent Leave</h5>
+        <div class="card-body">
+            {{ $user->leaves }}
+        </div>
+    </div>
 @endsection
