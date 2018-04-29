@@ -21,15 +21,18 @@ Route::get('/subs', 'SubordinateController@index');
 Route::get('/subs/{user}', 'SubordinateController@show')->where('user', '[0-9]+');
 Route::post('/subs/{user}', 'SubordinateController@store')->where('user', '[0-9]+');
 Route::put('/subs/{user}', 'SubordinateController@update')->where('user', '[0-9]+');
-//get file from storage
-Route::get('storage/{filename}', function ($filename)
-{
-    $path = storage_path('public/' . $filename);
 
+
+Route::get('/admin', 'AdminsController@index')->name('admin');
+
+//get file from storage
+//this should be at bottom of the file
+Route::get('{folder}/{filename}', function ($folder, $filename)
+{
+    $path = storage_path('app/public/'.$folder.'/' . $filename);
     if (!File::exists($path)) {
         abort(404);
     }
-
     $file = File::get($path);
     $type = File::mimeType($path);
 
@@ -38,5 +41,3 @@ Route::get('storage/{filename}', function ($filename)
 
     return $response;
 });
-
-Route::get('/admin', 'AdminsController@index')->name('admin');

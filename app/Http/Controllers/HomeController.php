@@ -33,7 +33,18 @@ class HomeController extends Controller
     }
     
     public function update(Request $request) {
+        // return $request;
+        $validatedData = $request->validate([
+            'image' => 'image|mimes:jpeg,png,jpg,gif,svg',
+        ]);
         $user = Auth::user();
+        if ($request->hasFile('image')) {
+            $image = $request->file('image');
+            $extension = $image->getClientOriginalExtension();
+            $new_name = $user->id.".".$extension;
+            $image->storeAs('public/profile_images', $new_name);
+            $user->image = $new_name;
+        }
         $user->tel = $request->tel;
         $user->facebook = $request->facebook;
         $user->line = $request->line;
