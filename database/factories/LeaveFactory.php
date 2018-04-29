@@ -16,13 +16,6 @@ $factory->define(App\Leave::class, function (Faker $faker) {
     }
     $end_date = $faker->dateTimeThisYear('now');
     $start_date = $faker->dateTimeBetween($end_date->format('Y-m-d H:i:s').' -8 days', $end_date);
-    // if ($date1 < $date2) {
-    //     $start_date = $date1;
-    //     $end_date = $date2;
-    // } else {
-    //     $start_date = $date2;
-    //     $end_date = $date1;
-    // }
     return [
         'user_id' => $me,
         'substitute_id' => $faker->randomElement($user_ids),
