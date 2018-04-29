@@ -23,7 +23,7 @@
           </a>
         </td>
         <td>{{ $sub->email }}</td>
-        <td>{{ $sub->position }}</td>
+        <td>{{ $sub->position()->first()->name }}</td>
         <td>{{ $sub->tel }}</td>
       </tr>
       @endforeach
