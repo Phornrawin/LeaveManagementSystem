@@ -57,6 +57,17 @@ class User extends Authenticatable
     public function subordinates() {
         return $this->hasMany('App\User', 'supervisor_id');
     }
+    public function getRecentLeaveAttribute() {
+        $leaves = $this->leaves;
+        if (count($leaves)==0) return null;
+        $recentLeave = $leaves[0];
+        foreach ($leaves as $leave) {
+            if ($recentLeave->start_date > $leave->start_date) {
+                $recentLeave = $leave;
+            }
+        }
+        return $recentLeave;
+    }
     public function isAdmin() {
         return $this->is_admin;
     }
