@@ -40,7 +40,7 @@ Leave Management System
     <div class="card">
         <h5 class="card-header">My Recent Leave</h5>
         <div class="card-body">
-            {{ $user->leaves }}
+            {{ $user->recentLeave ? $user->recentLeave->start_date : "You don't have any leaves" }}
         </div>
     </div>
 @endsection
