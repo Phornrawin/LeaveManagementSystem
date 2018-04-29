@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-
+use Illuminate\Support\Facades\Auth;
 class HomeController extends Controller
 {
     /**
@@ -23,12 +23,13 @@ class HomeController extends Controller
      */
     public function index()
     {
-        return view('profiles.index');
+        $user = Auth::user();
+        return view('profiles.index', compact('user'));
     }
 
     public function edit() {
         $user = Auth::user();
-        return view('profiles.edit', $user);
+        return view('profiles.edit', compact('user'));
     }
     
     public function update(Request $request) {
