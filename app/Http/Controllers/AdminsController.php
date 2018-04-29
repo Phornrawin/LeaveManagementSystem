@@ -18,7 +18,7 @@ class AdminsController extends Controller
      */
     public function index()
     {
-    	if(Auth::user()->is_admin !== 1)
+    	if(\Auth::user()->is_admin !== 1)
     		return redirect("/");
 
         $user = \Auth::user();

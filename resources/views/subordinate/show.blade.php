@@ -1,9 +1,9 @@
-@extends('layouts.app')
+@extends('layouts.user')
 
-@section('content')
+@section('main')
 
-<div class="container" style="width:80%">
-  <div class="card mb-3" style="margin-top: 50px;">
+<div class="container">
+  <div class="card mb-3"  >
     <div class="card-body row">
       <div class="col-sm-6">
         <img style="height: 325px; width: 100%;" src="{{ $sub->image }}" alt="Card image">
@@ -38,8 +38,11 @@
     <div class="card-body">
       <div class="card mb-3" id="task-card">
         <div data-toggle="collapse" data-target="#tasks">
-          <h3 class="card-header">
-            <a data-toggle="collapse" href="#tasks">{{ count($tasks) }}  Tasks</a>
+          <h3 class="card-header bg-info">
+            <a data-toggle="collapse" href="#tasks" class="text-white">
+              <img src="data:image/svg+xml;utf8;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iaXNvLTg4NTktMSI/Pgo8IS0tIEdlbmVyYXRvcjogQWRvYmUgSWxsdXN0cmF0b3IgMTkuMS4wLCBTVkcgRXhwb3J0IFBsdWctSW4gLiBTVkcgVmVyc2lvbjogNi4wMCBCdWlsZCAwKSAgLS0+CjxzdmcgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiB4bWxuczp4bGluaz0iaHR0cDovL3d3dy53My5vcmcvMTk5OS94bGluayIgdmVyc2lvbj0iMS4xIiBpZD0iQ2FwYV8xIiB4PSIwcHgiIHk9IjBweCIgdmlld0JveD0iMCAwIDQ4MS42IDQ4MS42IiBzdHlsZT0iZW5hYmxlLWJhY2tncm91bmQ6bmV3IDAgMCA0ODEuNiA0ODEuNjsiIHhtbDpzcGFjZT0icHJlc2VydmUiIHdpZHRoPSIyNHB4IiBoZWlnaHQ9IjI0cHgiPgo8Zz4KCTxnPgoJCTxwYXRoIGQ9Ik00ODAuNCwzNC40SDE2NC4xYy0wLjYsMC0xLjIsMC41LTEuMiwxLjJ2MjguMmMwLDAuNiwwLjUsMS4yLDEuMiwxLjJoMzE2LjNjMC42LDAsMS4yLTAuNSwxLjItMS4yVjM1LjYgICAgQzQ4MS42LDM0LjksNDgxLjEsMzQuNCw0ODAuNCwzNC40eiIgZmlsbD0iI0ZGRkZGRiIvPgoJCTxwYXRoIGQ9Ik0xNjQuMSwxMTZoMTU3LjVjMC42LDAsMS4yLTAuNSwxLjItMS4yVjg2LjZjMC0wLjYtMC41LTEuMi0xLjItMS4ySDE2NC4xYy0wLjYsMC0xLjIsMC41LTEuMiwxLjJ2MjguMiAgICBDMTYyLjksMTE1LjUsMTYzLjQsMTE2LDE2NC4xLDExNnoiIGZpbGw9IiNGRkZGRkYiLz4KCQk8cGF0aCBkPSJNNDgwLjQsMjAwSDE2NC4xYy0wLjYsMC0xLjIsMC41LTEuMiwxLjJ2MjguMmMwLDAuNiwwLjUsMS4yLDEuMiwxLjJoMzE2LjNjMC42LDAsMS4yLTAuNSwxLjItMS4ydi0yOC4yICAgIEM0ODEuNiwyMDAuNSw0ODEuMSwyMDAsNDgwLjQsMjAweiIgZmlsbD0iI0ZGRkZGRiIvPgoJCTxwYXRoIGQ9Ik0xNjQuMSwyODEuNmgxNTcuNWMwLjYsMCwxLjItMC41LDEuMi0xLjJ2LTI4LjJjMC0wLjYtMC41LTEuMi0xLjItMS4ySDE2NC4xYy0wLjYsMC0xLjIsMC41LTEuMiwxLjJ2MjguMiAgICBDMTYyLjksMjgxLjEsMTYzLjQsMjgxLjYsMTY0LjEsMjgxLjZ6IiBmaWxsPSIjRkZGRkZGIi8+CgkJPHBhdGggZD0iTTQ4MC40LDM2NS42SDE2NC4xYy0wLjYsMC0xLjIsMC41LTEuMiwxLjJWMzk1YzAsMC42LDAuNSwxLjIsMS4yLDEuMmgzMTYuM2MwLjYsMCwxLjItMC41LDEuMi0xLjJ2LTI4LjIgICAgQzQ4MS42LDM2Ni4xLDQ4MS4xLDM2NS42LDQ4MC40LDM2NS42eiIgZmlsbD0iI0ZGRkZGRiIvPgoJCTxwYXRoIGQ9Ik0zMjEuNiw0MTYuN0gxNjQuMWMtMC42LDAtMS4yLDAuNS0xLjIsMS4ydjI4LjJjMCwwLjYsMC41LDEuMiwxLjIsMS4yaDE1Ny41YzAuNiwwLDEuMi0wLjUsMS4yLTEuMnYtMjguMiAgICBDMzIyLjcsNDE3LjIsMzIyLjIsNDE2LjcsMzIxLjYsNDE2Ljd6IiBmaWxsPSIjRkZGRkZGIi8+CgkJPHBvbHlnb24gcG9pbnRzPSI1MS45LDc5IDI2LjUsNTMuNCAwLDc5LjggMjUuNCwxMDUuMyA1MS44LDEzMS44IDc4LjMsMTA1LjUgMTM4LjksNDUuMSAxMTIuNiwxOC42ICAgIiBmaWxsPSIjRkZGRkZGIi8+CgkJPHBvbHlnb24gcG9pbnRzPSI1MS45LDI0NC42IDI2LjUsMjE5IDAsMjQ1LjQgMjUuNCwyNzAuOSA1MS44LDI5Ny40IDc4LjMsMjcxLjEgMTM4LjksMjEwLjcgMTEyLjYsMTg0LjIgICAiIGZpbGw9IiNGRkZGRkYiLz4KCQk8cG9seWdvbiBwb2ludHM9IjUxLjksNDEwLjIgMjYuNSwzODQuNiAwLDQxMSAyNS40LDQzNi41IDUxLjgsNDYzIDc4LjMsNDM2LjYgMTM4LjksMzc2LjMgMTEyLjYsMzQ5LjggICAiIGZpbGw9IiNGRkZGRkYiLz4KCTwvZz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8L3N2Zz4K" />
+              {{ count($tasks) }}  Tasks
+            </a>
           </h3>
         </div>
         <div id="tasks" class="collapse" data-parent="#task-card">
@@ -47,9 +50,9 @@
             @if (count($tasks) == 0)
             <h3 class="display-5 text-muted text-center">No Task<h3>
             @else
-            <table class="table">
+            <table class="table table-hover">
               <thead>
-                <tr class="table-primary">
+                <tr class="table-info">
                   <th scope="col"></th>
                   <th scope="col">Task Name</th>
                   <th scope="col">Created At</th>
@@ -58,7 +61,7 @@
               </thead>
               <tbody>
                 @foreach($tasks as $task)
-                <tr class="table-secondary">
+                <tr class="table-light">
                   <td scope="row">{{ $task->id }}</td>
                   <td>
                     <a href="">
@@ -86,7 +89,7 @@
                       <p class="form-text text-danger">{{ $errors->first('name') }}</p>
                     </div>
                     <div class="col-sm-4">
-                      <button type="submit" class="btn btn-primary btn-lg text-white" style="font-size: 12px; width: 100%">
+                      <button type="submit" class="btn btn-info btn-lg text-white" style="font-size: 12px; width: 100%">
                         <img style="margin-right: 5px" src="data:image/svg+xml;utf8;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iaXNvLTg4NTktMSI/Pgo8IS0tIEdlbmVyYXRvcjogQWRvYmUgSWxsdXN0cmF0b3IgMTkuMC4wLCBTVkcgRXhwb3J0IFBsdWctSW4gLiBTVkcgVmVyc2lvbjogNi4wMCBCdWlsZCAwKSAgLS0+CjxzdmcgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiB4bWxuczp4bGluaz0iaHR0cDovL3d3dy53My5vcmcvMTk5OS94bGluayIgdmVyc2lvbj0iMS4xIiBpZD0iQ2FwYV8xIiB4PSIwcHgiIHk9IjBweCIgdmlld0JveD0iMCAwIDQ4OS44IDQ4OS44IiBzdHlsZT0iZW5hYmxlLWJhY2tncm91bmQ6bmV3IDAgMCA0ODkuOCA0ODkuODsiIHhtbDpzcGFjZT0icHJlc2VydmUiIHdpZHRoPSIxNnB4IiBoZWlnaHQ9IjE2cHgiPgo8Zz4KCTxnPgoJCTxwYXRoIGQ9Ik00MzguMiwwSDUxLjZDMjMuMSwwLDAsMjMuMiwwLDUxLjZ2Mzg2LjZjMCwyOC41LDIzLjIsNTEuNiw1MS42LDUxLjZoMzg2LjZjMjguNSwwLDUxLjYtMjMuMiw1MS42LTUxLjZWNTEuNiAgICBDNDg5LjgsMjMuMiw0NjYuNiwwLDQzOC4yLDB6IE00NjUuMyw0MzguMmMwLDE0LjktMTIuMiwyNy4xLTI3LjEsMjcuMUg1MS42Yy0xNC45LDAtMjcuMS0xMi4yLTI3LjEtMjcuMVY1MS42ICAgIGMwLTE0LjksMTIuMi0yNy4xLDI3LjEtMjcuMWgzODYuNmMxNC45LDAsMjcuMSwxMi4yLDI3LjEsMjcuMVY0MzguMnoiIGZpbGw9IiNGRkZGRkYiLz4KCQk8cGF0aCBkPSJNMzM3LjQsMjMyLjdoLTgwLjN2LTgwLjNjMC02LjgtNS41LTEyLjMtMTIuMy0xMi4zcy0xMi4zLDUuNS0xMi4zLDEyLjN2ODAuM2gtODAuM2MtNi44LDAtMTIuMyw1LjUtMTIuMywxMi4yICAgIGMwLDYuOCw1LjUsMTIuMywxMi4zLDEyLjNoODAuM3Y4MC4zYzAsNi44LDUuNSwxMi4zLDEyLjMsMTIuM3MxMi4zLTUuNSwxMi4zLTEyLjN2LTgwLjNoODAuM2M2LjgsMCwxMi4zLTUuNSwxMi4zLTEyLjMgICAgQzM0OS43LDIzOC4xLDM0NC4yLDIzMi43LDMzNy40LDIzMi43eiIgZmlsbD0iI0ZGRkZGRiIvPgoJPC9nPgo8L2c+CjxnPgo8L2c+CjxnPgo8L2c+CjxnPgo8L2c+CjxnPgo8L2c+CjxnPgo8L2c+CjxnPgo8L2c+CjxnPgo8L2c+CjxnPgo8L2c+CjxnPgo8L2c+CjxnPgo8L2c+CjxnPgo8L2c+CjxnPgo8L2c+CjxnPgo8L2c+CjxnPgo8L2c+CjxnPgo8L2c+Cjwvc3ZnPgo=" />
                         ADD NEW TASK
                       </button>
@@ -99,8 +102,11 @@
           </div>
         </div>
         <div data-toggle="collapse" data-target="#leaves">
-          <h3 class="card-header">
-            <a data-toggle="collapse" href="#leaves">{{ count($leaves) }}  Leave</a>
+          <h3 class="card-header bg-warning">
+            <a data-toggle="collapse" href="#leaves" class="text-white">
+              <img src="data:image/svg+xml;utf8;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iaXNvLTg4NTktMSI/Pgo8IS0tIEdlbmVyYXRvcjogQWRvYmUgSWxsdXN0cmF0b3IgMTYuMC4wLCBTVkcgRXhwb3J0IFBsdWctSW4gLiBTVkcgVmVyc2lvbjogNi4wMCBCdWlsZCAwKSAgLS0+CjwhRE9DVFlQRSBzdmcgUFVCTElDICItLy9XM0MvL0RURCBTVkcgMS4xLy9FTiIgImh0dHA6Ly93d3cudzMub3JnL0dyYXBoaWNzL1NWRy8xLjEvRFREL3N2ZzExLmR0ZCI+CjxzdmcgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiB4bWxuczp4bGluaz0iaHR0cDovL3d3dy53My5vcmcvMTk5OS94bGluayIgdmVyc2lvbj0iMS4xIiBpZD0iQ2FwYV8xIiB4PSIwcHgiIHk9IjBweCIgd2lkdGg9IjI0cHgiIGhlaWdodD0iMjRweCIgdmlld0JveD0iMCAwIDMxLjcwOSAzMS43MDkiIHN0eWxlPSJlbmFibGUtYmFja2dyb3VuZDpuZXcgMCAwIDMxLjcwOSAzMS43MDk7IiB4bWw6c3BhY2U9InByZXNlcnZlIj4KPGc+Cgk8Zz4KCQk8cGF0aCBkPSJNMTAuNTk1LDI1LjcxOUg0LjY5NmMtMS4xMjcsMC0yLjA2LTAuODg2LTIuMDYtMi4wMTNWNS40MmMwLTEuMTI3LDAuOTMzLTIuMDA2LDIuMDYtMi4wMDZoMTQuMjc3ICAgIGMxLjEyNywwLDIuMDQ3LDAuODc5LDIuMDQ3LDIuMDA2djE1LjMyM2wyLjYzNy0zLjEzNVYzLjQ2MmMwLTEuNDgyLTEuMTcyLTIuNjg0LTIuNjUyLTIuNjg0SDIuNTU5QzEuMTM2LDAuNzc4LDAsMS45MzIsMCwzLjM1NCAgICB2MjIuMzgyYzAsMS40ODIsMS4xODUsMi42ODgsMi42NjksMi42ODhoMTAuMzU4bC0xLjIyNC0xLjA2M0MxMS4yNjcsMjYuODk2LDEwLjg2NCwyNi4zMjcsMTAuNTk1LDI1LjcxOXoiIGZpbGw9IiNGRkZGRkYiLz4KCQk8cGF0aCBkPSJNMTcuODc1LDYuNzk0SDYuMDM0Yy0wLjcyOCwwLTEuMzE0LDAuNTkxLTEuMzE0LDEuMzE4YzAsMC43MjYsMC41ODcsMS4zMTcsMS4zMTQsMS4zMTdoMTEuODQgICAgYzAuNzI4LDAsMS4zMTItMC41OTEsMS4zMTItMS4zMTdDMTkuMTg4LDcuMzg2LDE4LjYwMiw2Ljc5NCwxNy44NzUsNi43OTR6IiBmaWxsPSIjRkZGRkZGIi8+CgkJPHBhdGggZD0iTTE3Ljg3NSwxMS4xODdINi4wMzRjLTAuNzI4LDAtMS4zMTQsMC41OS0xLjMxNCwxLjMxOGMwLDAuNzI0LDAuNTg3LDEuMzE4LDEuMzE0LDEuMzE4aDExLjg0ICAgIGMwLjcyOCwwLDEuMzEyLTAuNTk0LDEuMzEyLTEuMzE4QzE5LjE4OCwxMS43NzcsMTguNjAyLDExLjE4NywxNy44NzUsMTEuMTg3eiIgZmlsbD0iI0ZGRkZGRiIvPgoJCTxwYXRoIGQ9Ik0xNy44NzUsMTUuNTgxSDYuMDM0Yy0wLjcyOCwwLTEuMzE0LDAuNTU4LTEuMzE0LDEuMjg2YzAsMC43MjUsMC41ODcsMS4yODIsMS4zMTQsMS4yODJoMTEuODQgICAgYzAuNzI4LDAsMS4zMTItMC41NiwxLjMxMi0xLjI4MkMxOS4xODgsMTYuMTM5LDE4LjYwMiwxNS41ODEsMTcuODc1LDE1LjU4MXoiIGZpbGw9IiNGRkZGRkYiLz4KCQk8cGF0aCBkPSJNNC43MTksMjEuMDU2YzAsMC43MjcsMC41ODcsMS4yODMsMS4zMTQsMS4yODNoNC40MThjMC4xODUtMC40NzMsMC40NjktMS4wMjIsMC44NTctMS40NzkgICAgYzAuNDA4LTAuNDczLDAuODg5LTAuODIsMS40MTItMS4wOTJINi4wMzRDNS4zMDYsMTkuNzcxLDQuNzE5LDIwLjMzMSw0LjcxOSwyMS4wNTZ6IiBmaWxsPSIjRkZGRkZGIi8+CgkJPHBhdGggZD0iTTE3Ljg3NSwxOS43NzFoLTAuOTg4YzAuMzI0LDAuMTM3LDAuNjMzLDAuMzY2LDAuOTE2LDAuNjExbDEuMzEyLDEuMTIzYzAuMDUtMC4xMzUsMC4wNzYtMC4yOCwwLjA3Ni0wLjQzNyAgICBDMTkuMTg4LDIwLjM0NiwxOC42MDIsMTkuNzcxLDE3Ljg3NSwxOS43NzF6IiBmaWxsPSIjRkZGRkZGIi8+CgkJPHBhdGggZD0iTTMwLjg5OCwxNi4yNDljLTAuOTY1LTAuODI4LTIuNDItMC43MS0zLjI0NiwwLjI2bC03LjU2NCw4Ljg2N2wtMy43ODEtMy4yNDhjLTAuOTY4LTAuODI2LTIuNDIxLTAuNzE3LTMuMjQ4LDAuMjQ4ICAgIGMtMC44MjksMC45NjctMC43MTcsMi40MTgsMC4yNDgsMy4yNDZsNS41MzMsNC43NTJjMC40MjIsMC4zNTgsMC45NTEsMC41NTcsMS41LDAuNTU3YzAuMDYyLDAsMC4xMTktMC4wMDIsMC4xODItMC4wMDggICAgYzAuNjA3LTAuMDQ3LDEuMTc2LTAuMzM2LDEuNTcyLTAuODAxbDkuMDY2LTEwLjYyN0MzMS45ODIsMTguNTI4LDMxLjg2OSwxNy4wNzcsMzAuODk4LDE2LjI0OXoiIGZpbGw9IiNGRkZGRkYiLz4KCTwvZz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8L3N2Zz4K" />
+              {{ count($leaves) }}  Leave
+            </a>
           </h3>
         </div>
         <div id="leaves" class="collapse" data-parent="#leave-card">
@@ -108,9 +114,9 @@
             @if (count($leaves) == 0)
             <h3 class="display-5 text-muted text-center">No Leave<h3>
             @else
-            <table class="table">
+            <table class="table table-hover">
               <thead>
-                <tr class="table-primary">
+                <tr class="table-warning">
                   <th scope="col"></th>
                   <th scope="col">Substitute</th>
                   <th scope="col">Category</th>
@@ -120,7 +126,7 @@
               </thead>
               <tbody>
                 @foreach($leaves as $leave)
-                <tr class="table-secondary">
+                <tr class="table-default">
                   <td scope="row">{{ $leave->id }}</td>
                   <td>
                     <a href="">

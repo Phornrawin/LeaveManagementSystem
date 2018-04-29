@@ -1,9 +1,9 @@
-@extends('layouts.app')
+@extends('layouts.user')
 
-@section('content')
+@section('main')
 
-<div class="container" style="width:800px">
-  <table class="table table-hover" style="margin-top: 50px">
+<div class="container">
+  <table class="table table-hover">
     <thead>
       <tr class="table-primary">
         <th scope="col"></th>
