@@ -39,10 +39,7 @@
                 <button class="btn btn-danger" value="submit">sign out</button>
             </form>
             @else
-            <form action="/login" method="GET" style="margin: 0px">
-                @csrf
-                <button class="btn btn-success" value="submit">sign in</button>
-            </form>
+            <a href="/login" class="btn btn-success">sign in</a>
             @endif
         </div>
     </nav>
