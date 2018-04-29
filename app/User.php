@@ -59,6 +59,7 @@ class User extends Authenticatable
     }
     public function getRecentLeaveAttribute() {
         $leaves = $this->leaves;
+        if (count($leaves)==0) return null;
         $recentLeave = $leaves[0];
         foreach ($leaves as $leave) {
             if ($recentLeave->start_date > $leave->start_date) {

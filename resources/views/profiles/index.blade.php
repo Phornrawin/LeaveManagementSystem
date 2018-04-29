@@ -38,9 +38,16 @@ Leave Management System
     </div>
     <hr />
     <div class="card">
-        <h5 class="card-header">My Recent Leave</h5>
+        <h5 class="card-header bg-warning">My Recent Leave</h5>
         <div class="card-body">
-            {{ $user->recentLeave ? $user->recentLeave->start_date : "You don't have any leaves" }}
+            @if($user->recentLeave)
+                <p class="card-text">{{$user->recentLeave->start_date}}</p>
+            @else
+                <div class="card-body">
+                    <p class="card-text">You do not have any leaves.</p>
+                    <a href="" class="btn btn-outline-warning">create new leave request.</a>
+                </div>
+            @endif
         </div>
     </div>
 @endsection
