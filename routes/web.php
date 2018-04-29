@@ -45,5 +45,7 @@ Route::get('storage/{filename}', function ($filename)
     return $response;
 });
 
+Route::get('/admin', 'AdminsController@index')->name('admin');
+
 // Route::get('/home', 'HomeController@index')->name('home');
 >>>>>>> 4144c1524488c2b2a50765223be2fdfa5daf930a
