@@ -81,10 +81,9 @@ Route::get('{folder}/{filename}', function ($folder, $filename)
 
     return $response;
 
-<<<<<<< HEAD
+
 });
-=======
-});
+
 
 
 
@@ -94,4 +93,4 @@ Route::get('/home', 'HomeController@index')->name('home');
 Route::get('/requests','RequestsController@index');
 Route::get('/myrequests','MyRequestsController@index');
 Route::get('/myrequests/{id}/cancel','MyRequestsController@update');
->>>>>>> 612be6090c17bb0252ca3514a9238a211446a630
+
