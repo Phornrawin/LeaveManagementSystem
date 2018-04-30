@@ -29,8 +29,7 @@ Route::get('/subs/assign', 'SubordinateController@create');
 
 Route::get('/admin', 'AdminsController@index')->name('admin');
 
-//get file from storage
-//this should be at bottom of the file
+
 Route::get('{folder}/{filename}', function ($folder, $filename)
 {
     $path = storage_path('app/public/'.$folder.'/' . $filename);
@@ -44,4 +43,10 @@ Route::get('{folder}/{filename}', function ($folder, $filename)
     $response->header("Content-Type", $type);
 
     return $response;
+
 });
+
+Route::get('/admin/login', 'AdminsController@index')->name('admin');
+
+Route::get('/home', 'HomeController@index')->name('home');
+

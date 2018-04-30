@@ -21,8 +21,8 @@
     @stack("css")
     
 </head>
-<body>
-    <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
+<header class="navbar navbar-expand navbar-dark flex-column flex-md-row bd-navbar">
+    <body>
         <a href="/" class="navbar-brand" href="#">LeaveManagement</a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
@@ -42,7 +42,6 @@
             <a href="/login" class="btn btn-success">sign in</a>
             @endif
         </div>
-    </nav>
     <main class="container-fluid">
         @yield("content")
     </main>
@@ -53,4 +52,6 @@
     <script src="{{ asset('js/app.js') }}" defer></script>
     @stack("js")
 </body>
+</header>
+
 </html>
