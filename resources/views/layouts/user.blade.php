@@ -13,7 +13,7 @@
                 <a class="list-group-item list-group-item-action collapsed" data-toggle="collapse" data-target="#collapseRequests" aria-expanded="false" aria-controls="collapseRequests">Requests to me <i class="fas fa-caret-down"></i><span class="badge badge-pill badge-success float-right"> 3 </span></a>
                 <div id="collapseRequests" class="collapse">
                     <a href="/requests" class="list-group-item list-group-item-action bg-light">Request for leaves</a>
-                    <a href="/substitutions" class="list-group-item list-group-item-action bg-light">Request for substituting</a>
+                    <a href="/substitutions" class="list-group-item list-group-item-action bg-light">Request for substitutions</a>
                 </div>
                 <a class="list-group-item list-group-item-action collapsed" data-toggle="collapse" data-target="#collapseSub" aria-expanded="false" aria-controls="collapseSub">My subordinates <i class="fas fa-caret-down"></i></a>
                 <div id="collapseSub" class="collapse">
