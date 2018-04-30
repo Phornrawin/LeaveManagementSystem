@@ -30,7 +30,7 @@ Route::post('/subs/assign', 'SubordinateController@assignTask');
 
 Route::get('/substitutions', 'SubstitutionsController@index');
 Route::get('/substitutions/{leave}', 'SubstitutionsController@show')->where('leave', '[0-9]+');
-Route::put('/substitutions', 'SubordinateController@update');
+Route::put('/substitutions/{leave}', 'SubstitutionsController@update')->where('leave', '[0-9]+');
 
 
 //get file from storage

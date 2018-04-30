@@ -127,13 +127,9 @@
               </thead>
               <tbody>
                 @foreach($leaves as $leave)
-                <tr class="table-default">
+                <tr class="table-default" onclick="window.location='/requests/' + {{ $leave->id }}">
                   <td scope="row">{{ $leave->id }}</td>
-                  <td>
-                    <a href="">
-                      {{ $leave->substitute()->first()->firstname . " " . $leave->substitute()->first()->lastname }}
-                    </a>
-                  </td>
+                  <td>{{ $leave->substitute()->first()->fullName }}</td>
                   <td>{{ $leave->category()->first()->name }}</td>
                   <td>{{ $leave->task()->first()->name }}</td>
                   <td>
