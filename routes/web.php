@@ -17,10 +17,6 @@ Route::put('/edit', 'HomeController@update');
 
 Auth::routes();
 
-Route::get('/subs', 'SubordinateController@index');
-Route::get('/subs/{user}', 'SubordinateController@show')->where('user', '[0-9]+');
-Route::post('/subs/{user}', 'SubordinateController@store')->where('user', '[0-9]+');
-Route::put('/subs/{user}', 'SubordinateController@update')->where('user', '[0-9]+');
 //get file from storage
 Route::get('storage/{filename}', function ($filename)
 {
@@ -39,4 +35,6 @@ Route::get('storage/{filename}', function ($filename)
     return $response;
 });
 
-Route::get('/admin', 'AdminsController@index')->name('admin');
+Route::get('/admin/login', 'AdminsController@index')->name('admin');
+
+// Route::get('/home', 'HomeController@index')->name('home');
