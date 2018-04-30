@@ -65,12 +65,12 @@
                     </td>
                     <td>
                         @if($i < count($pending))
-                            <a href="/leaves/{{$pending[$i]->id}}" class="text-dark">{{$pending[$i]->user->fullName}}</a>
+                            <a href="/requests/{{$pending[$i]->id}}" class="text-dark">{{$pending[$i]->user->fullName}}</a>
                         @endif
                     </td>
                     <td>
                         @if($i < count($absence))
-                            <a href="/leaves/{{$absence[$i]->id}}" class="text-dark">{{$absence[$i]->user->fullName}}</a>
+                            <a href="/requests/{{$absence[$i]->id}}" class="text-dark">{{$absence[$i]->user->fullName}}</a>
                         @endif
                     </td>
                 </tr>

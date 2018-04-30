@@ -23,7 +23,7 @@ class SubstitutionsController extends Controller
   */
   public function index()
   {
-    $leaves = Leave::where('substitute_id', \Auth::user()->id)->get();
+    $leaves = Leave::where('substitute_id', \Auth::user()->id)->where('status', 'new')->get();
     return view('substitutions.index', [ 'leaves' => $leaves ]);
   }
 
@@ -70,7 +70,7 @@ class SubstitutionsController extends Controller
   */
   public function edit(Leave $leave)
   {
-    //
+
   }
 
   /**
@@ -82,7 +82,16 @@ class SubstitutionsController extends Controller
   */
   public function update(Request $request, Leave $leave)
   {
-    //
+    if ($request->input('status') == 'reject')
+    {
+      $leave->status = 'rejected by substitute';
+    }
+    else if ($request->input('status') == 'accept')
+    {
+      $leave->status = 'wait for approval';
+    }
+    $leave->save();
+    return redirect('/substitutions');
   }
 
   /**
