@@ -25,9 +25,21 @@ Route::get('/subs/{user}', 'SubordinateController@show')->where('user', '[0-9]+'
 Route::post('/subs/{user}', 'SubordinateController@store')->where('user', '[0-9]+');
 Route::put('/subs/{user}', 'SubordinateController@update')->where('user', '[0-9]+');
 Route::get('/subs/assign', 'SubordinateController@create');
+Route::post('/subs/assign', 'SubordinateController@assignTask');
+
+Route::get('/substitutions', 'SubstitutionsController@index');
 
 
-Route::get('/admin', 'AdminsController@index')->name('admin');
+//get file from storage
+//this should be at bottom of the file
+
+
+Route::get('/admin', 'Admins\AdminsController@index')->name('admin');
+Route::get('/admin/departments/view', 'Admins\Departments\DepartmentsController@index')->name('view');
+Route::post('/admin/departments/view', 'Admins\Departments\DepartmentsController@store');
+Route::get('/admin/departments/{department}/edit', 'Admins\Departments\DepartmentsController@edit');
+Route::put('/admin/departments/{department}', 'Admins\Departments\DepartmentsController@update');
+Route::delete('/admin/departments/{department}', 'Admins\Departments\DepartmentsController@destroy');
 
 
 Route::get('{folder}/{filename}', function ($folder, $filename)
@@ -46,7 +58,6 @@ Route::get('{folder}/{filename}', function ($folder, $filename)
 
 });
 
-Route::get('/admin/login', 'AdminsController@index')->name('admin');
+
 
 Route::get('/home', 'HomeController@index')->name('home');
-

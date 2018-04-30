@@ -56,6 +56,42 @@ class SubordinateController extends Controller
     $task->save();
     return redirect('/subs/' . $user->id);
   }
+  public function assignTask(Request $request)
+  {
+    if ($request->input('mode') === 'all')
+    {
+      $subs = User::where('supervisor_id', \Auth::user()->id)->get();
+      foreach ($subs as $sub)
+      {
+        $task = new Task;
+        $task->name = $request->input('name');
+        $task->assign_to = $sub->id;
+        $task->save();
+      }
+    }
+    else if ($request->input('mode') === 'pos')
+    {
+      $subs = User::where('supervisor_id', \Auth::user()->id)->get();
+      foreach ($subs as $sub)
+      {
+        if ($sub->position->name === $request->input('position'))
+        {
+          $task = new Task;
+          $task->name = $request->input('name');
+          $task->assign_to = $sub->id;
+          $task->save();
+        }
+      }
+    }
+    else if ($request->input('mode') === 'spec')
+    {
+      $task = new Task;
+      $task->name = $request->input('name');
+      $task->assign_to = $request->input('sub-id');
+      $task->save();
+    }
+    return redirect('/subs/assign');
+  }
 
   /**
   * Display the specified resource.
