@@ -3,7 +3,7 @@
 @section('main')
 
 <div class="container">
-  <div class="card mb-3"  >
+  <div class="card mb-3">
     <div class="card-body row">
       <div class="col-sm-4">
         <img class="text-center card-pic border border-dark width="315" height="315" src="/profile_images/{{ $sub->image ?? 'default'.$sub->gender.'.png'}}">
