@@ -49,6 +49,7 @@
 	      <tr>
 	        <th>id</th>
 	        <th>Category's name</th>
+	        <th>Days</th>
 	      </tr>
 	    </thead>
 	    <tbody> 
@@ -79,10 +80,10 @@
 	    	 @endforeach
 	    </tbody>
 	  </table>
+	  <form method="get" action="{{route("admin.categories.getpdf")}}">
+            <button type="submit">Download as PDF</button>
+      </form>
 	</div>
-            
-	 
-		
 	</div>
 </div>
 

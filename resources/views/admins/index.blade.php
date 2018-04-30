@@ -16,27 +16,26 @@
 </style>
 <br><br>
 <div class="row">
-  <div class="col-2" style="margin: 5px">
-      <div class="nav flex-column nav-pills" id="v-pills-tab" role="tablist" aria-orientation="vertical">
-          <a class="nav-link active"  href="/admin" aria-selected="true">Home</a>
+  <div class="col-2" style="margin: 10px" >
+        <div class="nav flex-column nav-pills" id="v-pills-tab" role="tablist" aria-orientation="vertical">
+            <a class="nav-link active"  href="/admin" aria-selected="true">Home</a>
             <a class="nav-link"  href="/admin/departments/view" aria-selected="false">Departments</a>
-          <!-- <a class="nav-link" id="v-pills-messages-tab" data-toggle="pill" href="#v-pills-messages" role="tab" aria-controls="v-pills-messages" aria-selected="false">Users</a> -->
-          <li class="nav-item dropdown">
-              <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                User
-              </a>
-              <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                <a class="dropdown-item" href="#">Create user</a>
-                <a class="dropdown-item" href="#">View all users</a>
-                <div class="dropdown-divider"></div>
-                <a class="dropdown-item" href="#">Delete user</a>
-              </div>
-          </li>
-          <a class="nav-link"  href="/admin/categories/view" aria-selected="false">Leave</a>
-      </div>
-  </div>
+            
+            <!-- <a class="nav-link" id="v-pills-messages-tab" data-toggle="pill" href="#v-pills-messages" role="tab" aria-controls="v-pills-messages" aria-selected="false">Users</a> -->
+            <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                  Users
+                </a>
+                <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                  <a class="dropdown-item" href="/admin/users/create">Create users</a>
+                  <a class="dropdown-item" href="/admin/users/view">View all users</a>
+                </div>
+            </li>
+            <a class="nav-link" href="/admin/categories/view" role="tab"  aria-selected="false">Categories</a>
+        </div>
+    </div>
 
-  <div class="col-9">
+  <div class="col-9" style="margin: 10px">
       <!-- Head topic shortcut -->
     <div class="topic">
         <p class="main-topic"><a href="#Introduction"># Introduction</a></p>
@@ -55,6 +54,7 @@
         <br><br>
 
     <!-- Main Content -->
+    <br>
     <div class="main-content">
         <!-- Introduction -->
         <h3 id="Introduction" class="main-topic jumptarget"># Introduction</h3>

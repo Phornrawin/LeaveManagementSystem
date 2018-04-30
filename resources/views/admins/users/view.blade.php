@@ -86,6 +86,10 @@
 	    	 @endforeach
 	    </tbody>
 	  </table>
+	  <br>
+	  <form method="get" action="{{route("admin.users.getpdf")}}">
+            <button type="submit">Download as PDF</button>
+      </form>
 	</div>
 
 	

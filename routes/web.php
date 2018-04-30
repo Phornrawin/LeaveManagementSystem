@@ -57,6 +57,10 @@ Route::get('/admin/categories/{category}/edit', 'Admins\CategoriesController@edi
 Route::put('/admin/categories/{category}', 'Admins\CategoriesController@update');
 Route::delete('/admin/categories/{category}', 'Admins\CategoriesController@destroy');
 
+Route::get('/admin/categories/getpdf', 'Admins\CategoriesController@getpdf')->name('admin.categories.getpdf');
+Route::get('/admin/users/getpdf', 'Admins\Users\UsersController@getpdf')->name('admin.users.getpdf');
+
+
 
 
 

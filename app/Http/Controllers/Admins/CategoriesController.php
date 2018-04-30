@@ -5,6 +5,8 @@ namespace App\Http\Controllers\Admins;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Category;
+use Dompdf\Dompdf;
+use Carbon\Carbon;
 
 class CategoriesController extends Controller
 {
@@ -70,6 +72,41 @@ class CategoriesController extends Controller
     {
         $category->delete();
         return redirect("/admin/categories/view");
+    }
+    public function getpdf(){
+        $pdf = new Dompdf();
+        $categories = Category::all();
+        $records = "<h1 style='text-align: center'> Category's report.</h1>";
+        $records .= <<<'EOT'
+        <table class="table table-hover table-bordered table-striped">
+          <tr>
+            <th>Category's name</th>
+            <th>Days amount</th>
+          </tr>'
+EOT;
+        foreach($categories as $category){
+        $records.= <<<"EOT"
+            <tr>
+                    <td>
+                      <a>
+                         $category->name 
+                      </a>
+                    </td>
+                    <td>
+                      <a>
+                         $category->days 
+                      </a>
+                    </td>
+            </tr>
+EOT;
+        }
+        $records.="</table>";
+        $pdf->loadHtml($records);
+        $pdf->setPaper('A4', 'landscape');
+        $pdf->render();
+        $pdf->stream('Category report'.Carbon::now());
+
+        return view('admin.categories.view');
     }
 
 }
