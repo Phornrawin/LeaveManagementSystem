@@ -69,13 +69,13 @@
         <div class="col-sm-3">
           <label for="input-start">Start Date</label>
           <input name="start_date" class="form-control" type="date" id="input-start">
-          <script>
-            document.querySelector("#input-start").valueAsDate = new Date(new Date().getTime() + 24 * 60 * 60 * 1000);
-          </script>
         </div>
         <div class="col-sm-3">
           <label for="input-start">End Date</label>
           <input name="end_date" class="form-control" type="date" id="input-end">
+          <!-- <script>
+            document.querySelector("#input-end").valueAsDate = new Date(new Date().getTime() + 24 * 60 * 60 * 1000 * 8);
+          </script> -->
         </div>
         <div class="col-sm-3">
           <button type="submit" class="btn btn-primary m-3" style="font-size: 26px"><i class="far fa-plus-square"></i>&nbsp;SUBMIT</button>
@@ -84,4 +84,22 @@
     </form>
   </div>
 </div>
+<script>
+var today = new Date();
+var dd = today.getDate() + 1;
+var mm = today.getMonth() + 1;
+var yyyy = today.getFullYear();
+if (dd < 10) {
+  dd = '0' + dd;
+}
+if (mm < 10) {
+  mm = '0' + mm;
+}
+today = yyyy + '-' + mm + '-' + dd;
+document.getElementById("input-start").setAttribute("min", today);
+document.getElementById("input-start").addEventListener('change', function() {
+  document.getElementById("input-end").value = null;
+  if (document.getElementById("input-start").value) document.getElementById("input-end").min = document.getElementById("input-start").value;
+}, false);
+</script>
 @endsection

@@ -13,7 +13,7 @@ class MyRequestsController extends Controller
     public function __construct(){
         $this->middleware('auth');
     }
-  
+
     public function index(){
         $me = Auth::User();
         $ldate = date('Y-m-d 00:00:00');
@@ -23,7 +23,7 @@ class MyRequestsController extends Controller
         $history = Leave::whereIn('status',['cancel','approved','rejected','rejected by substitute'])
             ->where('user_id',$me->id)
             ->get();
-        
+
         return view('myrequests.index',compact('current','history'));
     }
 
@@ -44,17 +44,24 @@ class MyRequestsController extends Controller
         $categories = \App\Category::all();
         return view('myrequests.create', compact('users', 'tasks', 'categories'));
     }
-    
+
     public function store(Request $request) {
-        $leave = new Leave;
-        $leave->user_id = $request->input('user_id');
-        $leave->substitute_id = $request->input('substitute_id');
-        $leave->category_id = $request->input('category_id');
-        $leave->task_id = $request->input('task_id');
-        $leave->start_date = $request->input('start_date');
-        $leave->end_date = $request->input('end_date');
-        $leave->status = $request->input('status');
-        $leave->save();
-        return "haha";
+      $request->validate([
+        'category_id' => 'required',
+        'substitute_id' => 'required',
+        'task_id' => 'required',
+        'start_date' => 'required',
+        'end_date' => 'required'
+      ]);
+      $leave = new Leave;
+      $leave->user_id = \Auth::user()->id;
+      $leave->category_id = $request->input('category_id');
+      $leave->substitute_id = $request->input('substitute_id');
+      $leave->task_id = $request->input('task_id');
+      $leave->start_date = $request->input('start_date');
+      $leave->end_date = $request->input('end_date');
+      $leave->status = 'new';
+      $leave->save();
+      return redirect('/myrequests/create');
     }
 }
