@@ -26,6 +26,10 @@ Route::post('/subs/{user}', 'SubordinateController@store')->where('user', '[0-9]
 Route::put('/subs/{user}', 'SubordinateController@update')->where('user', '[0-9]+');
 Route::get('/subs/assign', 'SubordinateController@create');
 Route::post('/subs/assign', 'SubordinateController@assignTask');
+
+Route::get('/substitutions', 'SubstitutionsController@index');
+
+
 //get file from storage
 //this should be at bottom of the file
 
