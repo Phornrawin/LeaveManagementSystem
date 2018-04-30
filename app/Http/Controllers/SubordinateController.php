@@ -50,6 +50,9 @@ class SubordinateController extends Controller
   */
   public function store(Request $request, User $user)
   {
+    $request->validate([
+        'name' => 'required|max:255|min:3'
+    ]);
     $task = new Task;
     $task->name = $request->input('name');
     $task->assign_to = $user->id;
@@ -58,6 +61,9 @@ class SubordinateController extends Controller
   }
   public function assignTask(Request $request)
   {
+    $request->validate([
+        'name' => 'required|max:255|min:3'
+    ]);
     if ($request->input('mode') === 'all')
     {
       $subs = User::where('supervisor_id', \Auth::user()->id)->get();
@@ -130,10 +136,7 @@ class SubordinateController extends Controller
   */
   public function update(Request $request, User $user)
   {
-    $leave = Leave::find($request->input('leave_id'));
-    $leave->status = $request->input('status');
-    $leave->save();
-    return redirect('/subs/' . $user->id);
+
   }
 
   /**

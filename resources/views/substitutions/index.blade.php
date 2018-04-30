@@ -2,9 +2,12 @@
 
 @section('main')
 <div class="container">
-  <h3 class="display-4">Request for substituting</h3>
+  <h3 class="display-4">Request for substitutions</h3>
   <hr>
   <div class="container">
+    @if (count($leaves) == 0)
+    <h3 class="display-5 text-muted text-center mt-5">You don't have new request for substitutions<h3>
+    @else
     <table class="table table-hover">
       <thead>
         <tr class="table-primary">
@@ -33,6 +36,7 @@
         @endforeach
       </tbody>
     </table>
+    @endif
   </div>
 </div>
 @endsection

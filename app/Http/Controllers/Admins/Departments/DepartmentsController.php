@@ -69,17 +69,5 @@ class DepartmentsController extends Controller
         $department->delete();
         return redirect("/admin/departments/view");
     }
-//     public function edit() {
-//         $user = Auth::user();
-//         return view('profiles.edit', compact('user'));
-//     }
-    
-//     public function update(Request $request) {
-//         $user = Auth::user();
-//         $user->tel = $request->tel;
-//         $user->facebook = $request->facebook;
-//         $user->line = $request->line;
-//         $user->save();
-//         return redirect('/');
-//     }
+
 }

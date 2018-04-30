@@ -51,6 +51,16 @@ Route::post('/admin/users/create', 'Admins\Users\UsersController@store');
 Route::put('/admin/users/{user}', 'Admins\Users\UsersController@update');
 Route::delete('/admin/users/{user}', 'Admins\Users\UsersController@destroy');
 
+Route::get('/admin/categories/view', 'Admins\CategoriesController@index');
+Route::post('/admin/categories/view', 'Admins\CategoriesController@store');
+Route::get('/admin/categories/{category}/edit', 'Admins\CategoriesController@edit');
+Route::put('/admin/categories/{category}', 'Admins\CategoriesController@update');
+Route::delete('/admin/categories/{category}', 'Admins\CategoriesController@destroy');
+
+Route::get('/admin/categories/getpdf', 'Admins\CategoriesController@getpdf')->name('admin.categories.getpdf');
+Route::get('/admin/users/getpdf', 'Admins\Users\UsersController@getpdf')->name('admin.users.getpdf');
+
+
 
 
 

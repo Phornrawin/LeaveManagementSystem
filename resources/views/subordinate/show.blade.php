@@ -3,7 +3,7 @@
 @section('main')
 
 <div class="container">
-  <div class="card mb-3"  >
+  <div class="card mb-3">
     <div class="card-body row">
       <div class="col-sm-4">
         <img class="text-center card-pic border border-dark width="315" height="315" src="/profile_images/{{ $sub->image ?? 'default'.$sub->gender.'.png'}}">
@@ -36,6 +36,15 @@
       </div>
     </div>
     <div class="card-body">
+      @if ($errors->any())
+      <div class="alert alert-danger" style="width: 40%">
+        <ul>
+          @foreach ($errors->all() as $error)
+          <li>{{ $error }}</li>
+          @endforeach
+        </ul>
+      </div>
+      @endif
       <div class="card mb-3" id="task-card">
         <div data-toggle="collapse" data-target="#tasks">
           <h3 class="card-header bg-info">
@@ -48,7 +57,7 @@
         <div id="tasks" class="collapse" data-parent="#task-card">
           <div class="card-body">
             @if (count($tasks) == 0)
-            <h3 class="display-5 text-muted text-center">No Task<h3>
+            <h3 class="display-5 text-muted text-center mt-5">No task available<h3>
             @else
             <table class="table table-hover">
               <thead>
@@ -63,11 +72,7 @@
                 @foreach($tasks as $task)
                 <tr class="table-light">
                   <td scope="row">{{ $task->id }}</td>
-                  <td>
-                    <a href="">
-                      {{ $task->name }}
-                    </a>
-                  </td>
+                  <td>{{ $task->name }}</td>
                   <td>{{ $sub->created_at }}</td>
                   <td>{{ $sub->updated_at }}</td>
                 </tr>
@@ -79,23 +84,15 @@
               <form action="/subs/{{ $sub->id }}" method="post">
                 @csrf
                 <div class="row">
-                  <div class="col-sm-6">
-
+                  <div class="col-sm-8">
+                    <input name="name" value="{{ old('name') }}" type="text" class="form-control" id="name-input" placeholder="Enter Task Name">
                   </div>
-                  <div class="col-sm-6">
-                    <div class="row">
-                      <div class="col-sm-8">
-                      <input name="name" value="{{ old('name') }}" type="text" class="form-control" id="name-input" placeholder="Enter Task Name">
-                      <p class="form-text text-danger">{{ $errors->first('name') }}</p>
-                    </div>
-                    <div class="col-sm-4">
-                      <button type="submit" class="btn btn-info btn-lg text-white" style="font-size: 12px; width: 100%">
-                        <img style="margin-right: 5px" src="data:image/svg+xml;utf8;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iaXNvLTg4NTktMSI/Pgo8IS0tIEdlbmVyYXRvcjogQWRvYmUgSWxsdXN0cmF0b3IgMTkuMC4wLCBTVkcgRXhwb3J0IFBsdWctSW4gLiBTVkcgVmVyc2lvbjogNi4wMCBCdWlsZCAwKSAgLS0+CjxzdmcgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiB4bWxuczp4bGluaz0iaHR0cDovL3d3dy53My5vcmcvMTk5OS94bGluayIgdmVyc2lvbj0iMS4xIiBpZD0iQ2FwYV8xIiB4PSIwcHgiIHk9IjBweCIgdmlld0JveD0iMCAwIDQ4OS44IDQ4OS44IiBzdHlsZT0iZW5hYmxlLWJhY2tncm91bmQ6bmV3IDAgMCA0ODkuOCA0ODkuODsiIHhtbDpzcGFjZT0icHJlc2VydmUiIHdpZHRoPSIxNnB4IiBoZWlnaHQ9IjE2cHgiPgo8Zz4KCTxnPgoJCTxwYXRoIGQ9Ik00MzguMiwwSDUxLjZDMjMuMSwwLDAsMjMuMiwwLDUxLjZ2Mzg2LjZjMCwyOC41LDIzLjIsNTEuNiw1MS42LDUxLjZoMzg2LjZjMjguNSwwLDUxLjYtMjMuMiw1MS42LTUxLjZWNTEuNiAgICBDNDg5LjgsMjMuMiw0NjYuNiwwLDQzOC4yLDB6IE00NjUuMyw0MzguMmMwLDE0LjktMTIuMiwyNy4xLTI3LjEsMjcuMUg1MS42Yy0xNC45LDAtMjcuMS0xMi4yLTI3LjEtMjcuMVY1MS42ICAgIGMwLTE0LjksMTIuMi0yNy4xLDI3LjEtMjcuMWgzODYuNmMxNC45LDAsMjcuMSwxMi4yLDI3LjEsMjcuMVY0MzguMnoiIGZpbGw9IiNGRkZGRkYiLz4KCQk8cGF0aCBkPSJNMzM3LjQsMjMyLjdoLTgwLjN2LTgwLjNjMC02LjgtNS41LTEyLjMtMTIuMy0xMi4zcy0xMi4zLDUuNS0xMi4zLDEyLjN2ODAuM2gtODAuM2MtNi44LDAtMTIuMyw1LjUtMTIuMywxMi4yICAgIGMwLDYuOCw1LjUsMTIuMywxMi4zLDEyLjNoODAuM3Y4MC4zYzAsNi44LDUuNSwxMi4zLDEyLjMsMTIuM3MxMi4zLTUuNSwxMi4zLTEyLjN2LTgwLjNoODAuM2M2LjgsMCwxMi4zLTUuNSwxMi4zLTEyLjMgICAgQzM0OS43LDIzOC4xLDM0NC4yLDIzMi43LDMzNy40LDIzMi43eiIgZmlsbD0iI0ZGRkZGRiIvPgoJPC9nPgo8L2c+CjxnPgo8L2c+CjxnPgo8L2c+CjxnPgo8L2c+CjxnPgo8L2c+CjxnPgo8L2c+CjxnPgo8L2c+CjxnPgo8L2c+CjxnPgo8L2c+CjxnPgo8L2c+CjxnPgo8L2c+CjxnPgo8L2c+CjxnPgo8L2c+CjxnPgo8L2c+CjxnPgo8L2c+CjxnPgo8L2c+Cjwvc3ZnPgo=" />
-                        ADD NEW TASK
-                      </button>
-                    </div>
+                  <div class="col-sm-4">
+                    <button type="submit" class="btn btn-info btn-lg text-white" style="font-size: 12px; width: 100%">
+                      <img style="margin-right: 5px" src="data:image/svg+xml;utf8;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iaXNvLTg4NTktMSI/Pgo8IS0tIEdlbmVyYXRvcjogQWRvYmUgSWxsdXN0cmF0b3IgMTkuMC4wLCBTVkcgRXhwb3J0IFBsdWctSW4gLiBTVkcgVmVyc2lvbjogNi4wMCBCdWlsZCAwKSAgLS0+CjxzdmcgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiB4bWxuczp4bGluaz0iaHR0cDovL3d3dy53My5vcmcvMTk5OS94bGluayIgdmVyc2lvbj0iMS4xIiBpZD0iQ2FwYV8xIiB4PSIwcHgiIHk9IjBweCIgdmlld0JveD0iMCAwIDQ4OS44IDQ4OS44IiBzdHlsZT0iZW5hYmxlLWJhY2tncm91bmQ6bmV3IDAgMCA0ODkuOCA0ODkuODsiIHhtbDpzcGFjZT0icHJlc2VydmUiIHdpZHRoPSIxNnB4IiBoZWlnaHQ9IjE2cHgiPgo8Zz4KCTxnPgoJCTxwYXRoIGQ9Ik00MzguMiwwSDUxLjZDMjMuMSwwLDAsMjMuMiwwLDUxLjZ2Mzg2LjZjMCwyOC41LDIzLjIsNTEuNiw1MS42LDUxLjZoMzg2LjZjMjguNSwwLDUxLjYtMjMuMiw1MS42LTUxLjZWNTEuNiAgICBDNDg5LjgsMjMuMiw0NjYuNiwwLDQzOC4yLDB6IE00NjUuMyw0MzguMmMwLDE0LjktMTIuMiwyNy4xLTI3LjEsMjcuMUg1MS42Yy0xNC45LDAtMjcuMS0xMi4yLTI3LjEtMjcuMVY1MS42ICAgIGMwLTE0LjksMTIuMi0yNy4xLDI3LjEtMjcuMWgzODYuNmMxNC45LDAsMjcuMSwxMi4yLDI3LjEsMjcuMVY0MzguMnoiIGZpbGw9IiNGRkZGRkYiLz4KCQk8cGF0aCBkPSJNMzM3LjQsMjMyLjdoLTgwLjN2LTgwLjNjMC02LjgtNS41LTEyLjMtMTIuMy0xMi4zcy0xMi4zLDUuNS0xMi4zLDEyLjN2ODAuM2gtODAuM2MtNi44LDAtMTIuMyw1LjUtMTIuMywxMi4yICAgIGMwLDYuOCw1LjUsMTIuMywxMi4zLDEyLjNoODAuM3Y4MC4zYzAsNi44LDUuNSwxMi4zLDEyLjMsMTIuM3MxMi4zLTUuNSwxMi4zLTEyLjN2LTgwLjNoODAuM2M2LjgsMCwxMi4zLTUuNSwxMi4zLTEyLjMgICAgQzM0OS43LDIzOC4xLDM0NC4yLDIzMi43LDMzNy40LDIzMi43eiIgZmlsbD0iI0ZGRkZGRiIvPgoJPC9nPgo8L2c+CjxnPgo8L2c+CjxnPgo8L2c+CjxnPgo8L2c+CjxnPgo8L2c+CjxnPgo8L2c+CjxnPgo8L2c+CjxnPgo8L2c+CjxnPgo8L2c+CjxnPgo8L2c+CjxnPgo8L2c+CjxnPgo8L2c+CjxnPgo8L2c+CjxnPgo8L2c+CjxnPgo8L2c+CjxnPgo8L2c+Cjwvc3ZnPgo=" />
+                      ADD NEW TASK
+                    </button>
                   </div>
-                </div>
                 </div>
               </form>
             </div>
@@ -112,36 +109,36 @@
         <div id="leaves" class="collapse" data-parent="#leave-card">
           <div class="card-body" class="collapse">
             @if (count($leaves) == 0)
-            <h3 class="display-5 text-muted text-center">No Leave<h3>
+            <h3 class="display-5 text-muted text-center mt-5">No Leave history<h3>
             @else
             <table class="table table-hover">
               <thead>
                 <tr class="table-warning">
                   <th scope="col"></th>
+                  <th scope="col">Status</th>
                   <th scope="col">Substitute</th>
                   <th scope="col">Category</th>
                   <th scope="col">Task</th>
                   <th scope="col">Period</th>
                   <th scope="col">Start Date</th>
-                  <th>Status</th>
                 </tr>
               </thead>
               <tbody>
                 @foreach($leaves as $leave)
                 <tr class="table-default" onclick="window.location='/requests/' + {{ $leave->id }}">
                   <td scope="row">{{ $leave->id }}</td>
-                  <td>{{ $leave->substitute()->first()->fullName }}</td>
-                  <td>{{ $leave->category()->first()->name }}</td>
-                  <td>{{ $leave->task()->first()->name }}</td>
-                  <td>
+                  <td scope="row"><b>{{ $leave->status }}</b></td>
+                  <td scope="row">{{ $leave->substitute()->first()->fullName }}</td>
+                  <td scope="row">{{ $leave->category()->first()->name }}</td>
+                  <td scope="row">{{ $leave->task()->first()->name }}</td>
+                  <td scope="row">
                     <?php
                     $start = date_create($leave->start_date);
                     $end = date_create($leave->end_date);
                     echo date_diff($start, $end)->format("%a days");
                     ?>
                   </td>
-                  <td>{{ $leave->start_date }}</td>
-                  <td>{{ $leave->status }}</td>
+                  <td scope="row">{{ $leave->start_date }}</td>
                 </tr>
                 @endforeach
               </tbody>

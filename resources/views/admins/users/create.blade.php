@@ -7,7 +7,7 @@
     <div class="container">
         <div class="row">
             <div class="col-12" style="text-align:center">
-                <h3><b>Edit Department</b></h3>
+                <h3><b>Create User</b></h3>
             </div>
         </div>
         <div class="row">
@@ -45,10 +45,10 @@
                         
                     </div>
                     <label for="supervisor">Supervisor:</label>
-                    <div class="input-group mb-3">
+                    <div class="input-group ">
                           <select class="custom-select" name="supervisor">
                              @foreach($users as $user)
-                            <option value="{{ $user->id }}">{{ $user->name }}</option>
+                            <option value="{{ $user->id }}">{{ $user->firstname }} {{ $user->lastname }}</option>
                             @endforeach
                           </select>
                         

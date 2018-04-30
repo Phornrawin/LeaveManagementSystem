@@ -6,6 +6,9 @@
   <h3 class="display-4">My Subordinates</h3>
   <hr>
   <div class="container">
+    @if (count($subs) == 0)
+    <h3 class="display-5 text-muted text-center mt-5">You don't have subordinate<h3>
+    @else
     <table class="table table-hover">
       <thead>
         <tr class="table-primary">
@@ -32,6 +35,7 @@
         @endforeach
       </tbody>
     </table>
+    @endif
   </div>
 </div>
 
