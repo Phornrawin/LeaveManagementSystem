@@ -30,7 +30,7 @@ class MyRequestsController extends Controller
     public function update($id){
         $me = Auth::User();
         $leave = Leave::find($id);
-        if ($me->id == $leave->user()){
+        if ($me->id == $leave->user_id){
             Leave::find($id)->update(['status'=>'cancel']);
             return redirect('/myrequests');
         }else{
