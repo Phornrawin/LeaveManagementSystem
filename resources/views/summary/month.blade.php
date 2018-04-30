@@ -15,8 +15,14 @@
         color: white;
         filter: gray;
     }
-    table {
-        border: 2px solid black;
+    table.table-bordered{
+        border:1px solid blue;
+      }
+    table.table-bordered > thead > tr > th{
+        border:1px solid blue;
+    }
+    table.table-bordered > tbody > tr > td{
+        border:1px solid blue;
     }
 </style>
 @endpush

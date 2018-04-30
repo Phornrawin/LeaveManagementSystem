@@ -53,8 +53,15 @@ class SummaryController extends Controller
         $subordinates = \Auth::user()->subordinates;
         $sub_ids = $subordinates->pluck('id')->toArray();
         $leaves = \App\Leave::onDate($year.'-'.$month.'-'.$day)->whereIn('id', $sub_ids)->get();
+
+        $active = [];
+        $pending = [];
+        $absence = [];
+        foreach ($leaves as $leave) {
+            // if ($leave->)
+        }
         $date = date("d F Y", strtotime($year.'-'.$month.'-'.$day));
         
-        return view('summary.day', compact('subordinates', 'leaves', 'year', 'month', 'day'));
+        return view('summary.day', compact('subordinates', 'leaves', 'year', 'month', 'day', 'date'));
     }
 }
