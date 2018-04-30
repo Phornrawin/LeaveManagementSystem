@@ -81,26 +81,4 @@ Route::get('{folder}/{filename}', function ($folder, $filename)
 
     return $response;
 
-<<<<<<< HEAD
-<<<<<<< HEAD
-});
-=======
-=======
->>>>>>> a637994ae043453f3596251521a26115fcec6f2b
 
-});
-
-
-
-
-Route::get('/home', 'HomeController@index')->name('home');
-
-//request
-Route::get('/requests','RequestsController@index');
-Route::get('/myrequests','MyRequestsController@index');
-Route::get('/myrequests/{id}/cancel','MyRequestsController@update');
-
-<<<<<<< HEAD
->>>>>>> 07ce3dd3367ad33549dedc2f102a0f9e8e2896cf
-=======
->>>>>>> a637994ae043453f3596251521a26115fcec6f2b
