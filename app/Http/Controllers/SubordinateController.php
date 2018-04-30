@@ -106,7 +106,7 @@ class SubordinateController extends Controller
     }
     $tasks = Task::where('assign_to', $user->id)->get();
     $subs = User::where('supervisor_id', \Auth::user()->id)->get();
-    $leaves = Leave::where('user_id', $user->id)->get();
+    $leaves = Leave::where('user_id', $user->id)->orderBy('start_date', 'desc')->get();
     return view('subordinate.show', [ 'sub' => $user, 'tasks' => $tasks, 'leaves' => $leaves ]);
   }
 
