@@ -29,6 +29,8 @@ Route::get('/subs/assign', 'SubordinateController@create');
 Route::post('/subs/assign', 'SubordinateController@assignTask');
 
 Route::get('/substitutions', 'SubstitutionsController@index');
+Route::get('/substitutions/{leave}', 'SubstitutionsController@show')->where('leave', '[0-9]+');
+Route::put('/substitutions', 'SubordinateController@update');
 
 
 //get file from storage
@@ -75,4 +77,17 @@ Route::get('{folder}/{filename}', function ($folder, $filename)
 
     return $response;
 
+<<<<<<< HEAD
 });
+=======
+});
+
+
+
+Route::get('/home', 'HomeController@index')->name('home');
+
+//request
+Route::get('/requests','RequestsController@index');
+Route::get('/myrequests','MyRequestsController@index');
+Route::get('/myrequests/{id}/cancel','MyRequestsController@update');
+>>>>>>> 612be6090c17bb0252ca3514a9238a211446a630
