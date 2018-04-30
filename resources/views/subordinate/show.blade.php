@@ -122,6 +122,7 @@
                   <th scope="col">Category</th>
                   <th scope="col">Task</th>
                   <th scope="col">Period</th>
+                  <th scope="col">Start Date</th>
                   <th>Status</th>
                 </tr>
               </thead>
@@ -139,6 +140,7 @@
                     echo date_diff($start, $end)->format("%a days");
                     ?>
                   </td>
+                  <td>{{ $leave->start_date }}</td>
                   <td>{{ $leave->status }}</td>
                 </tr>
                 @endforeach
