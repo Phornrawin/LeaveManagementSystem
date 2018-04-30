@@ -48,6 +48,15 @@ class MyRequestsController extends Controller
     }
     
     public function store(Request $request) {
+        $leave = new Leave;
+        $leave->user_id = $request->input('user_id');
+        $leave->substitute_id = $request->input('substitute_id');
+        $leave->category_id = $request->input('category_id');
+        $leave->task_id = $request->input('task_id');
+        $leave->start_date = $request->input('start_date');
+        $leave->end_date = $request->input('end_date');
+        $leave->status = $request->input('status');
+        $leave->save();
         return "haha";
     }
 }
