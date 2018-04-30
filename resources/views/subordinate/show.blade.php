@@ -36,6 +36,15 @@
       </div>
     </div>
     <div class="card-body">
+      @if ($errors->any())
+      <div class="alert alert-danger" style="width: 40%">
+        <ul>
+          @foreach ($errors->all() as $error)
+          <li>{{ $error }}</li>
+          @endforeach
+        </ul>
+      </div>
+      @endif
       <div class="card mb-3" id="task-card">
         <div data-toggle="collapse" data-target="#tasks">
           <h3 class="card-header bg-info">
@@ -77,7 +86,6 @@
                 <div class="row">
                   <div class="col-sm-8">
                     <input name="name" value="{{ old('name') }}" type="text" class="form-control" id="name-input" placeholder="Enter Task Name">
-                    <p class="form-text text-danger">{{ $errors->first('name') }}</p>
                   </div>
                   <div class="col-sm-4">
                     <button type="submit" class="btn btn-info btn-lg text-white" style="font-size: 12px; width: 100%">

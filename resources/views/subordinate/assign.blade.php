@@ -5,6 +5,17 @@
   <h3 class="display-4">Assign tasks</h3>
   <hr>
   <div class="container">
+
+    @if ($errors->any())
+    <div class="alert alert-danger" style="width: 40%">
+      <ul>
+        @foreach ($errors->all() as $error)
+        <li>{{ $error }}</li>
+        @endforeach
+      </ul>
+    </div>
+    @endif
+    
     <form action="/subs/assign/" method="post">
       @csrf
 
