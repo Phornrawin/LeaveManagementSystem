@@ -23,9 +23,9 @@ class MyRequestsController extends Controller
 
     public function update($id){
         $me = Auth::User();
-        $leave = DB::table('leaves')->where('id',$id)->first();
+        $leave = DB::table('leaves')->find($id);
         if ($me->id == $leave->user_id){
-            $leave->status = 'cancel';
+            DB::table('leaves')->where('id',$id)->update(['status'=>'cancel']);
             return redirect('/myrequests');
         }
     }
