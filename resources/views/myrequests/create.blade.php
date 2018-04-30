@@ -6,7 +6,7 @@
 
 @section('main')
 <div class="container">
-  <h3 class="display-4">Assign tasks</h3>
+  <h3 class="display-4">Make new leave request</h3>
   <hr>
   <div class="container">
     <form action="#" method="post">
