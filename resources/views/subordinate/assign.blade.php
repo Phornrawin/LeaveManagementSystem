@@ -5,7 +5,7 @@
   <h3 class="display-4">Assign tasks</h3>
   <hr>
   <div class="container">
-    <form action="/assign/" method="post">
+    <form action="/subs/assign/" method="post">
       @csrf
 
       <div class="row">
@@ -62,7 +62,7 @@
         </div>
         <div class="col-sm-3" id="div-person" style="display: none">
           <label for="select-person">Person</label>
-          <select name="position" class="form-control" id="select-person">
+          <select name="sub-id" class="form-control" id="select-person">
             @foreach($subs as $sub)
             @if(old('subs') == $sub->firstname . " " . $sub->lastname)
             <option value="{{ $sub->id }}" selected>{{ $sub->firstname . " " . $sub->lastname }}</option>

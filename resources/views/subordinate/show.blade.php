@@ -5,10 +5,10 @@
 <div class="container">
   <div class="card mb-3"  >
     <div class="card-body row">
-      <div class="col-sm-6">
-        <img style="height: 325px; width: 100%;" src="{{ $sub->image }}" alt="Card image">
+      <div class="col-sm-4">
+        <img class="text-center card-pic border border-primary" width="315" height="315" src="/profile_images/{{ $sub->image ?? 'default'.$sub->gender.'.png'}}">
       </div>
-      <div class="col-sm-6">
+      <div class="col-sm-8">
         <h3 class="display-4">
           {{ $sub->firstname . " " . $sub->lastname }}
         </h3>
@@ -121,8 +121,8 @@
                   <th scope="col">Substitute</th>
                   <th scope="col">Category</th>
                   <th scope="col">Task</th>
+                  <th scope="col">Period</th>
                   <th>Status</th>
-                  <!-- <th scope="col"></th> -->
                 </tr>
               </thead>
               <tbody>
@@ -136,31 +136,14 @@
                   </td>
                   <td>{{ $leave->category()->first()->name }}</td>
                   <td>{{ $leave->task()->first()->name }}</td>
+                  <td>
+                    <?php
+                    $start = date_create($leave->start_date);
+                    $end = date_create($leave->end_date);
+                    echo date_diff($start, $end)->format("%a days");
+                    ?>
+                  </td>
                   <td>{{ $leave->status }}</td>
-                  <!-- <td>
-                    <div class="row">
-                      <div class="col-sm-6">
-                      </div>
-                      <div class="col-sm-3">
-                        <form action="/subs/{{ $sub->id }}" method="post">
-                          @method('PUT')
-                          @csrf
-                          <input type="hidden" name="status" value="approved">
-                          <input type="hidden" name="leave_id" value="{{ $leave->id }}">
-                          <button type="submit" class="btn btn-success">APPROVE</button>
-                        </form>
-                      </div>
-                      <div class="col-sm-3">
-                        <form action="/subs/{{ $sub->id }}" method="post">
-                          @method('PUT')
-                          @csrf
-                          <input type="hidden" name="status" value="rejected">
-                          <input type="hidden" name="leave_id" value="{{ $leave->id }}">
-                          <button type="submit" class="btn btn-danger">REJECT</button>
-                        </form>
-                      </div>
-                    </div>
-                  </td> -->
                 </tr>
                 @endforeach
               </tbody>

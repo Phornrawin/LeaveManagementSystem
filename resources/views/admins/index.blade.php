@@ -6,6 +6,7 @@
 
 @section('content')
 <br><br>
+<<<<<<< HEAD
 <div class="row">
   <div class="col-2" style="margin: 10px">
       <div class="nav flex-column nav-pills" id="v-pills-tab" role="tablist" aria-orientation="vertical">
@@ -55,6 +56,26 @@
         <p class="minor-topic"><a href="#Summary">Summary</a></p>
 
         <br><br>
+=======
+<div class="col-2" >
+    <div class="nav flex-column nav-pills" id="v-pills-tab" role="tablist" aria-orientation="vertical">
+         <a class="nav-link active"  href="/admin" aria-selected="true">Home</a>
+        <a class="nav-link"  href="/admin/departments/view" aria-selected="false">Departments</a>
+        
+        <!-- <a class="nav-link" id="v-pills-messages-tab" data-toggle="pill" href="#v-pills-messages" role="tab" aria-controls="v-pills-messages" aria-selected="false">Users</a> -->
+        <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              Users
+            </a>
+            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+              <a class="dropdown-item" href="/admin/users/create">Create users</a>
+              <a class="dropdown-item" href="/admin/users/view">View all users</a>
+              <div class="dropdown-divider"></div>
+              <a class="dropdown-item" href="#">Delect users</a>
+            </div>
+        </li>
+        <a class="nav-link" id="v-pills-settings-tab" data-toggle="pill" href="#v-pills-settings" role="tab" aria-controls="v-pills-settings" aria-selected="false">Categories</a>
+>>>>>>> 7f86253a67539d87a14cb66ba2594868439e7dc0
     </div>
 
     <!-- Main Content -->
