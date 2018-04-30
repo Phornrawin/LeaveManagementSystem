@@ -32,6 +32,9 @@
         <a class="nav-link" id="v-pills-settings-tab" data-toggle="pill" href="#v-pills-settings" role="tab" aria-controls="v-pills-settings" aria-selected="false">Leave</a>
     </div>
 </div>
+<div class="col-10">
+    <!-- div's Toto -->
+</div>
 
 
 
