@@ -17,7 +17,7 @@ Route::put('/edit', 'HomeController@update');
 
 Route::get('/summary/{year?}', 'SummaryController@year')->where('year', '[0-9]+');
 Route::get('/summary/{year}/{month}', 'SummaryController@month')->where(['year' => '[0-9]+', 'month' => '[1-9]|0[1-9]|1[0-2]']);
-Route::get('/summary/{year}/{month}/{day}', 'SummaryController@day')->where(['year' => '[0-9]+', 'month' => '[1-9]|0[1-9]|1[0-2]', 'day'=>'[1-2][0-9]|[0-9]|3[0-1]']);
+Route::get('/summary/{year}/{month}/{day}', 'SummaryController@day')->where(['year' => '[0-9]+', 'month' => '[1-9]|0[1-9]|1[0-2]', 'day'=>'[1-2][0-9]|0[0-9]|3[0-1]|[0-9]']);
 
 Auth::routes();
 
@@ -82,8 +82,11 @@ Route::get('{folder}/{filename}', function ($folder, $filename)
     return $response;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 });
 =======
+=======
+>>>>>>> a637994ae043453f3596251521a26115fcec6f2b
 
 });
 
@@ -97,4 +100,7 @@ Route::get('/requests','RequestsController@index');
 Route::get('/myrequests','MyRequestsController@index');
 Route::get('/myrequests/{id}/cancel','MyRequestsController@update');
 
+<<<<<<< HEAD
 >>>>>>> 07ce3dd3367ad33549dedc2f102a0f9e8e2896cf
+=======
+>>>>>>> a637994ae043453f3596251521a26115fcec6f2b

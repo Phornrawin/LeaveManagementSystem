@@ -53,9 +53,13 @@
     <script src="{{ asset('js/app.js') }}" defer></script>
     @stack("js")
 <<<<<<< HEAD
+<<<<<<< HEAD
  
 =======
 >>>>>>> 871ef1fca39dd576b5a164d52ce0995892337dda
+=======
+ 
+>>>>>>> a637994ae043453f3596251521a26115fcec6f2b
 </body>
 
 

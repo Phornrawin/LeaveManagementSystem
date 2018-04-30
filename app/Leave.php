@@ -44,7 +44,7 @@ class Leave extends Model
     public function isApproved() {
         return $this->status == "approved";
     }
-    public function isCancelled() {
+    public function isRevoked() {
         return $this->status == "rejected" or $this->status == "rejected by substitute" or $this->status == "cancel";
     }
 }
