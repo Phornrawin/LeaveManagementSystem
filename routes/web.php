@@ -29,6 +29,7 @@ Route::get('/subs/assign', 'SubordinateController@create');
 Route::post('/subs/assign', 'SubordinateController@assignTask');
 
 Route::get('/substitutions', 'SubstitutionsController@index');
+Route::get('/substitutions/{leave}', 'SubstitutionsController@show')->where('leave', '[0-9]+');
 
 
 //get file from storage
@@ -65,7 +66,7 @@ Route::get('{folder}/{filename}', function ($folder, $filename)
 
 Route::get('/home', 'HomeController@index')->name('home');
 
-//request 
+//request
 Route::get('/requests','RequestsController@index');
 Route::get('/myrequests','MyRequestsController@index');
 Route::get('/myrequests/{id}/cancel','MyRequestsController@update');

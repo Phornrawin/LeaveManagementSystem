@@ -28,7 +28,7 @@ use Illuminate\Support\Facades\DB;
         <td>{{ $leave->end_date }}</td>
         <td>{{ $leave->status }}</td>
         <td>
-        @if ($leave->status == 'wait for approval' )
+        @if (($leave->status == 'new')||($leave->status == 'wait for approval') )
         <a href="{{ url('/myrequests/' . $leave->id.'/cancel') }}">
             Cancel
           </a>
