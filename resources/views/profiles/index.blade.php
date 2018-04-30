@@ -21,7 +21,7 @@ Leave Management System
         <h5 class="card-header bg-primary text-white">Profile<a href="/edit" class="float-right text-white"><i class="fas fa-cog"></i></a></h5>
         <div class="card-body row">
             <div class="col-12 col-lg-3">
-                <img class="text-center card-pic border border-primary" width="200" height="200" src="storage/profile_images/default{{$user->gender}}.png" alt="Card image cap">
+                <img class="text-center card-pic border border-primary" width="200" height="200" src="profile_images/{{ $user->image ?? 'default'.$user->gender.'.png'}}">
             </div>
             <div class="col-12 col-lg-9">
                 <h5 class="card-title">{{$user->gender=="male" ? "Mr." : "Ms."}} {{$user->firstname}} {{$user->lastname}}</h5>

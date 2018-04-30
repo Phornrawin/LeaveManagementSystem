@@ -15,17 +15,30 @@ Route::get('/', 'HomeController@index');
 Route::get('/edit', 'HomeController@edit');
 Route::put('/edit', 'HomeController@update');
 
+Route::get('/summary/{year?}/{month?}', 'SummaryController@index')->where(['year' => '[0-9]+', 'month' => '[1-9]|0[1-9]|1[0-2]']);
+
 Auth::routes();
 
-//get file from storage
-Route::get('storage/{filename}', function ($filename)
-{
-    $path = storage_path('public/' . $filename);
+<<<<<<< HEAD
+=======
+Route::get('/subs', 'SubordinateController@index');
+Route::get('/subs/{user}', 'SubordinateController@show')->where('user', '[0-9]+');
+Route::post('/subs/{user}', 'SubordinateController@store')->where('user', '[0-9]+');
+Route::put('/subs/{user}', 'SubordinateController@update')->where('user', '[0-9]+');
+Route::get('/subs/assign', 'SubordinateController@create');
 
+
+Route::get('/admin', 'AdminsController@index')->name('admin');
+
+>>>>>>> 0e86df5e3888c470a75468a2691cdc21a8969e2d
+//get file from storage
+//this should be at bottom of the file
+Route::get('{folder}/{filename}', function ($folder, $filename)
+{
+    $path = storage_path('app/public/'.$folder.'/' . $filename);
     if (!File::exists($path)) {
         abort(404);
     }
-
     $file = File::get($path);
     $type = File::mimeType($path);
 
@@ -33,8 +46,12 @@ Route::get('storage/{filename}', function ($filename)
     $response->header("Content-Type", $type);
 
     return $response;
+<<<<<<< HEAD
 });
 
 Route::get('/admin/login', 'AdminsController@index')->name('admin');
 
 // Route::get('/home', 'HomeController@index')->name('home');
+=======
+});
+>>>>>>> 0e86df5e3888c470a75468a2691cdc21a8969e2d

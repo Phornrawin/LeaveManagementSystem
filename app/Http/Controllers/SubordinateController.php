@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\User;
 use App\Task;
 use App\Leave;
+use App\Position;
 use Illuminate\Http\Request;
 
 class SubordinateController extends Controller
@@ -36,7 +37,9 @@ class SubordinateController extends Controller
   */
   public function create()
   {
-
+    $positions = Position::all();
+    $subs = User::where('supervisor_id', \Auth::user()->id)->get();
+    return view('subordinate.assign', [ 'positions' => $positions, 'subs' => $subs ]);
   }
 
   /**
@@ -64,7 +67,7 @@ class SubordinateController extends Controller
   {
     $tasks = Task::where('assign_to', $user->id)->get();
     $subs = User::where('supervisor_id', \Auth::user()->id)->get();
-    $leaves = Leave::where('user_id', $user->id)->where('status', 'wait for approval')->get();
+    $leaves = Leave::where('user_id', $user->id)->get();
     return view('subordinate.show', [ 'sub' => $user, 'tasks' => $tasks, 'leaves' => $leaves ]);
   }
 

@@ -28,7 +28,6 @@ $factory->define(App\User::class, function (Faker $faker) {
         'gender' => $faker->randomElement([
             'male', 'female'
         ]),
-        'image' => $faker->imageUrl($width = 640, $height = 480),
         'supervisor_id' => $faker->randomElement($user_ids),
         'department_id' => $department_id,
         'position_id' => $faker->randomElement($position_ids),

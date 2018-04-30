@@ -20,7 +20,7 @@
                     <a href="/subs" class="list-group-item list-group-item-action bg-light">Show all my subordinates</a>
                     <a href="/subs/assign" class="list-group-item list-group-item-action bg-light">Assign tasks</a>
                 </div>
-                <a class="list-group-item list-group-item-action">Calendar</a>
+                <a href="/summary" class="list-group-item list-group-item-action">Summary</a>
             </div>
         </div>
         <div class="col-lg-9 col-md-8 col-sm-7 col-xs-12">
