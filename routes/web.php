@@ -45,6 +45,22 @@ Route::delete('/admin/departments/{department}', 'Admins\Departments\Departments
 Route::get('admin/users/view', 'Admins\Users\UsersController@index')->name('view');
 
 
+
+
+
+Route::get('/home', 'HomeController@index')->name('home');
+
+//request 
+
+Route::get('/requests/','RequestsController@index');
+Route::get('/requests/{id}','RequestsController@show');
+Route::get('/requests/{id}/approved','RequestsController@approved');
+Route::get('/requests/{id}/rejected','RequestsController@rejected');
+Route::get('/myrequests','MyRequestsController@index');
+Route::get('/myrequests/{id}/cancel','MyRequestsController@update');
+
+
+
 Route::get('{folder}/{filename}', function ($folder, $filename)
 {
     $path = storage_path('app/public/'.$folder.'/' . $filename);
@@ -60,12 +76,3 @@ Route::get('{folder}/{filename}', function ($folder, $filename)
     return $response;
 
 });
-
-
-
-Route::get('/home', 'HomeController@index')->name('home');
-
-//request 
-Route::get('/requests','RequestsController@index');
-Route::get('/myrequests','MyRequestsController@index');
-Route::get('/myrequests/{id}/cancel','MyRequestsController@update');
