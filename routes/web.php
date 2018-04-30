@@ -26,7 +26,9 @@ Route::put('/subs/{user}', 'SubordinateController@update')->where('user', '[0-9]
 Route::get('/subs/assign', 'SubordinateController@create');
 
 
-Route::get('/admin', 'AdminsController@index')->name('admin');
+Route::get('/admin', 'Admins\AdminsController@index')->name('admin');
+Route::get('/admin/departments/view', 'Admins\Departments\DepartmentsController@index')->name('view');
+Route::post('/admin/departments/view', 'Admins\Departments\DepartmentsController@store');
 
 
 Route::get('{folder}/{filename}', function ($folder, $filename)
@@ -45,7 +47,7 @@ Route::get('{folder}/{filename}', function ($folder, $filename)
 
 });
 
-Route::get('/admin/login', 'AdminsController@index')->name('admin');
+
 
 Route::get('/home', 'HomeController@index')->name('home');
 
