@@ -15,6 +15,9 @@
         color: white;
         filter: gray;
     }
+    table {
+        border: 2px solid black;
+    }
 </style>
 @endpush
 
@@ -38,18 +41,11 @@
                 <tr class="bg-dark">
                     <th colspan="7" id="month" class="text-center">
                         <h3>
-                        @if($hasMonth)
                             <span class="float-left"><a href="/summary/{{$year}}"><i class="fas fa-arrow-left"></i></a></span>
                             {{$date}}
-                        @else
-                            <span class="float-left"><a href="/summary/{{$year-1}}"><i class="fas fa-arrow-left"></i></a></span>
-                            {{$date}}
-                            <span class="float-right"><a href="/summary/{{$year+1}}"><i class="fas fa-arrow-right"></i></a></span>
-                        @endif
                         </h3>
                     </th>
                 </tr>
-                @if($hasMonth)
                 <tr class="bg-info">
                     <th scope="col" class="text-center">Sun.</th>
                     <th scope="col" class="text-center">Mon.</th>
@@ -59,30 +55,32 @@
                     <th scope="col" class="text-center">Fri.</th>
                     <th scope="col" class="text-center">Sat.</th>
                 </tr>
-                @endif
             </thead>
             <tbody>
-                @if($hasMonth)
-                    @for($i=0;$i<6;$i++)
+                @for($i=0;$i<6;$i++)
                     <tr>
                         @for($j=1;$j<8;$j++)
                             @if($i*7+$j > $dayOfWeek and $i*7+$j-$dayOfWeek <= cal_days_in_month(CAL_GREGORIAN, $month, $year))
-                                <td {{date('Y-m-d')==$year.'-'.$month.'-'.($i*7+$j-$dayOfWeek) ? "class=table-danger" : ""}} id="day{{$i*7+$j-$dayOfWeek}}"><span class="float-right small align-top">{{$i*7+$j-$dayOfWeek}}</span></td>
+                                <td onclick="selectDay({{$i*7+$j-$dayOfWeek}})" {{date('Y-m-d')==$year.'-'.$month.'-'.($i*7+$j-$dayOfWeek) ? "class=table-danger" : ""}} id="day{{$i*7+$j-$dayOfWeek}}">
+                                    <span class="float-right font-weight-bold">{{$i*7+$j-$dayOfWeek}}</span>
+                                    <div class="detail p-1 float-left">
+                                        @if($details[$i*7+$j-$dayOfWeek-1]['available'])
+                                        <i class="fas fa-circle text-success"></i> : {{ $details[$i*7+$j-$dayOfWeek-1]['available'] }}<br />
+                                        @endif
+                                        @if($details[$i*7+$j-$dayOfWeek-1]['waits'])
+                                        <i class="fas fa-circle text-warning"></i> : {{ $details[$i*7+$j-$dayOfWeek-1]['waits'] }}<br />
+                                        @endif
+                                        @if($details[$i*7+$j-$dayOfWeek-1]['leaves'])
+                                        <i class="fas fa-circle text-danger"></i> : {{ $details[$i*7+$j-$dayOfWeek-1]['leaves'] }}
+                                        @endif
+                                    </div>
+                                </td>
                             @else
                                 <td class="table-secondary"></td>
                             @endif
                         @endfor
                     </tr>
-                    @endfor
-                @else
-                    @for($i=0;$i<3;$i++)
-                    <tr>
-                        @for($j=1;$j<5;$j++)
-                            <td onclick="selectMonth({{$i*4+$j}})" id="month{{$i*4+$j}}">{{date('M', strtotime($year.'-'.($i*4+$j)))}}</td>
-                        @endfor
-                    </tr>
-                    @endfor
-                @endif
+                @endfor
             </tbody>
         </table>
     </div>
@@ -90,8 +88,8 @@
 
 @push('js')
 <script>
-    function selectMonth(month) {
-        window.location.href = "/summary/{{$year}}/"+month
+    function selectDay(day) {
+        window.location.href = "/summary/{{$year}}/{{$month}}/"+day
     }
 </script>
 @endpush
