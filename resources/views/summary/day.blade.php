@@ -2,9 +2,6 @@
 
 @push('css')
 <style>
-    td {
-        height: 70px;
-    }
     .detail {
         font-size: 11px;
     }
@@ -45,23 +42,25 @@
         <table class="table table-bordered table-info table-striped">
             <thead class="text-white">
                 <tr class="bg-dark">
-                    <th colspan="7" id="month" class="text-center">
+                    <th colspan="3" id="month" class="text-center">
                         <h3>
-                            <span class="float-left"><a href="/summary/{{$year-1}}"><i class="fas fa-arrow-left"></i></a></span>
-                            {{$year}}
-                            <span class="float-right"><a href="/summary/{{$year+1}}"><i class="fas fa-arrow-right"></i></a></span>
+                            <span class="float-left"><a href="/summary/{{$year}}/{{$month}}"><i class="fas fa-arrow-left"></i></a></span>
+                            {{$date}}
                         </h3>
                     </th>
                 </tr>
+                <tr class="bg-info">
+                    <th scope="col" class="text-center" width="33%">Active</th>
+                    <th scope="col" class="text-center" width="33%">Requests Pending</th>
+                    <th scope="col" class="text-center" width="33%">Leaves</th>
+                </tr>
             </thead>
             <tbody>
-                @for($i=0;$i<3;$i++)
                 <tr>
-                    @for($j=1;$j<5;$j++)
-                        <td onclick="selectMonth({{$i*4+$j}})" id="month{{$i*4+$j}}">{{date('M', strtotime($year.'-'.($i*4+$j)))}}</td>
-                    @endfor
+                    <td>Active</td>
+                    <td>Requests Pending</td>
+                    <td>Leaves</td>
                 </tr>
-                @endfor
             </tbody>
         </table>
     </div>
@@ -69,8 +68,8 @@
 
 @push('js')
 <script>
-    function selectMonth(month) {
-        window.location.href = "/summary/{{$year}}/"+month
+    function selectDay(day) {
+        window.location.href = "/summary/{{$year}}/{{$month}}/"+day
     }
 </script>
 @endpush

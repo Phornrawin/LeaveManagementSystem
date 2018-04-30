@@ -38,4 +38,13 @@ class Leave extends Model
     public function scopeOnMonth($query, $date) {
         return $query->where('start_date', 'like', $date."%");
     }
+    public function isPending() {
+        return $this->status == "new" or $this->status == "wait for approval";
+    }
+    public function isApproved() {
+        return $this->status == "approved";
+    }
+    public function isCancelled() {
+        return $this->status == "rejected" or $this->status == "rejected by substitute" or $this->status == "cancel";
+    }
 }

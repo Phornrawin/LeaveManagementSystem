@@ -73,6 +73,6 @@ class User extends Authenticatable
     }
 
     public function getFullNameAttribute() {
-        return ($user->gender=="male" ? "Mr." : "Ms.")." ".$user->firstname." ".$user->lastname;
+        return ($this->gender=="male" ? "Mr." : "Ms.")." ".$this->firstname." ".$this->lastname;
     }
 }

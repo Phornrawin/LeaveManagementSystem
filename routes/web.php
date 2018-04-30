@@ -17,6 +17,7 @@ Route::put('/edit', 'HomeController@update');
 
 Route::get('/summary/{year?}', 'SummaryController@year')->where('year', '[0-9]+');
 Route::get('/summary/{year}/{month}', 'SummaryController@month')->where(['year' => '[0-9]+', 'month' => '[1-9]|0[1-9]|1[0-2]']);
+Route::get('/summary/{year}/{month}/{day}', 'SummaryController@day')->where(['year' => '[0-9]+', 'month' => '[1-9]|0[1-9]|1[0-2]', 'day'=>'[1-2][0-9]|[0-9]|3[0-1]']);
 
 Auth::routes();
 
@@ -28,6 +29,8 @@ Route::get('/subs/assign', 'SubordinateController@create');
 Route::post('/subs/assign', 'SubordinateController@assignTask');
 
 Route::get('/substitutions', 'SubstitutionsController@index');
+Route::get('/substitutions/{leave}', 'SubstitutionsController@show')->where('leave', '[0-9]+');
+Route::put('/substitutions', 'SubordinateController@update');
 
 
 //get file from storage
@@ -48,6 +51,22 @@ Route::post('/admin/users/create', 'Admins\Users\UsersController@store');
 Route::put('/admin/users/{user}', 'Admins\Users\UsersController@update');
 Route::delete('/admin/users/{user}', 'Admins\Users\UsersController@destroy');
 
+
+
+
+Route::get('/home', 'HomeController@index')->name('home');
+
+//request 
+
+Route::get('/requests/','RequestsController@index');
+Route::get('/requests/{id}','RequestsController@show');
+Route::get('/requests/{id}/approved','RequestsController@approved');
+Route::get('/requests/{id}/rejected','RequestsController@rejected');
+Route::get('/myrequests','MyRequestsController@index');
+Route::get('/myrequests/{id}/cancel','MyRequestsController@update');
+
+
+
 Route::get('{folder}/{filename}', function ($folder, $filename)
 {
     $path = storage_path('app/public/'.$folder.'/' . $filename);
@@ -62,8 +81,17 @@ Route::get('{folder}/{filename}', function ($folder, $filename)
 
     return $response;
 
+<<<<<<< HEAD
+});
+=======
 });
 
 
 
 Route::get('/home', 'HomeController@index')->name('home');
+
+//request
+Route::get('/requests','RequestsController@index');
+Route::get('/myrequests','MyRequestsController@index');
+Route::get('/myrequests/{id}/cancel','MyRequestsController@update');
+>>>>>>> 612be6090c17bb0252ca3514a9238a211446a630

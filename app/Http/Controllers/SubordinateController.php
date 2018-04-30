@@ -101,6 +101,9 @@ class SubordinateController extends Controller
   */
   public function show(User $user)
   {
+    if ($user->supervisor_id !== \Auth::user()->id) {
+      abort(404);
+    }
     $tasks = Task::where('assign_to', $user->id)->get();
     $subs = User::where('supervisor_id', \Auth::user()->id)->get();
     $leaves = Leave::where('user_id', $user->id)->get();
