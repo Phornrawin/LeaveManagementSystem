@@ -14,7 +14,8 @@ class SubstitutionsController extends Controller
      */
     public function index()
     {
-        return view('substitutions.index');
+        $leaves = Leave::where('substitute_id', \Auth::user()->id)->get();
+        return view('substitutions.index', [ 'leaves' => $leaves ]);
     }
 
     /**

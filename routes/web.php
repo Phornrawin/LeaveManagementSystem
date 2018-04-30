@@ -64,3 +64,8 @@ Route::get('{folder}/{filename}', function ($folder, $filename)
 
 
 Route::get('/home', 'HomeController@index')->name('home');
+
+//request 
+Route::get('/requests','RequestsController@index');
+Route::get('/myrequests','MyRequestsController@index');
+Route::get('/myrequests/{id}/cancel','MyRequestController@update');
