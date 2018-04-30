@@ -5,8 +5,8 @@
         <div class="col-lg-3 col-md-4 col-sm-5 col-xs-12">
             <div class="list-group">
                 <a href="/" class="list-group-item list-group-item-action">Home</a>
-                <a class="list-group-item list-group-item-action collapsed" data-toggle="collapse" data-target="#collapseLeave" aria-expanded="false" aria-controls="collapseLeave">My Leaves  <i class="fas fa-caret-down"></i><span class="badge badge-pill badge-success float-right"> 1 </span></a>
-                <div id="collapseLeave" class="collapse">
+                <a id="collapseLeaveBtn" class="list-group-item list-group-item-action collapsed" data-toggle="collapse" data-target="#collapseLeave" aria-expanded="false" aria-controls="collapseLeave">My Leaves  <i class="fas fa-caret-down"></i><span class="badge badge-pill badge-success float-right"> 1 </span></a>
+                <div id="collapseLeave" class="collapse" aria-labelledby="#collapseLeaveBtn">
                     <a class="list-group-item list-group-item-action bg-light">Show all my leaves</a>
                     <a class="list-group-item list-group-item-action bg-light">Make new leave request</a>
                 </div>

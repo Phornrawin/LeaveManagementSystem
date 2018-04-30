@@ -33,7 +33,7 @@ class Leave extends Model
         return $this->belongsTo('App\Task', 'task_id');
     }
     public function scopeOnDate($query, $date) {
-        return $query->where('start_date', $date);
+        return $query->where('start_date', '<=', $date)->where('end_date', '>=', $date);
     }
     public function scopeOnMonth($query, $date) {
         return $query->where('start_date', 'like', $date."%");

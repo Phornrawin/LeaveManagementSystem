@@ -15,6 +15,9 @@
         color: white;
         filter: gray;
     }
+    table {
+        border: 2px solid black;
+    }
 </style>
 @endpush
 
@@ -58,7 +61,20 @@
                     <tr>
                         @for($j=1;$j<8;$j++)
                             @if($i*7+$j > $dayOfWeek and $i*7+$j-$dayOfWeek <= cal_days_in_month(CAL_GREGORIAN, $month, $year))
-                                <td onclick="selectDay({{$i*7+$j-$dayOfWeek}})" {{date('Y-m-d')==$year.'-'.$month.'-'.($i*7+$j-$dayOfWeek) ? "class=table-danger" : ""}} id="day{{$i*7+$j-$dayOfWeek}}"><span class="float-right small align-top">{{$i*7+$j-$dayOfWeek}}</span></td>
+                                <td onclick="selectDay({{$i*7+$j-$dayOfWeek}})" {{date('Y-m-d')==$year.'-'.$month.'-'.($i*7+$j-$dayOfWeek) ? "class=table-danger" : ""}} id="day{{$i*7+$j-$dayOfWeek}}">
+                                    <span class="float-right font-weight-bold">{{$i*7+$j-$dayOfWeek}}</span>
+                                    <div class="detail p-1 float-left">
+                                        @if($details[$i*7+$j-$dayOfWeek-1]['available'])
+                                        <i class="fas fa-circle text-success"></i> : {{ $details[$i*7+$j-$dayOfWeek-1]['available'] }}<br />
+                                        @endif
+                                        @if($details[$i*7+$j-$dayOfWeek-1]['waits'])
+                                        <i class="fas fa-circle text-warning"></i> : {{ $details[$i*7+$j-$dayOfWeek-1]['waits'] }}<br />
+                                        @endif
+                                        @if($details[$i*7+$j-$dayOfWeek-1]['leaves'])
+                                        <i class="fas fa-circle text-danger"></i> : {{ $details[$i*7+$j-$dayOfWeek-1]['leaves'] }}
+                                        @endif
+                                    </div>
+                                </td>
                             @else
                                 <td class="table-secondary"></td>
                             @endif
