@@ -26,9 +26,9 @@ use App\Task;
     <tbody>
       @foreach($current as $leave)
       <tr class="table-secondary">
-        <td>{{ User::find($leave->substitute_id)->fullname }}</td>
-        <td>{{ Category::find($leave->category_id)->name }}</td>
-        <td>{{ Task::find($leave->task_id)->name }}</td>
+        <td>{{ User::findOrFail($leave->substitute_id)->fullname }}</td>
+        <td>{{ Category::findOrFail($leave->category_id)->name }}</td>
+        <td>{{ Task::findOrFail($leave->task_id)->name }}</td>
         <td>{{ $leave->start_date }}</td>
         <td>{{ $leave->end_date }}</td>
         <td>{{ $leave->status }}</td>
@@ -63,9 +63,9 @@ use App\Task;
     <tbody>
       @foreach($history as $leave)
       <tr class="table-secondary">
-        <td>{{ User::find($leave->substitute_id)->fullname }}</td>
-        <td>{{ Category::find($leave->category_id)->name }}</td>
-        <td>{{ Task::find($leave->task_id)->name }}</td>
+        <td>{{ User::findOrFail($leave->substitute_id)->fullname }}</td>
+        <td>{{ Category::findOrFail($leave->category_id)->name }}</td>
+        <td>{{ Task::findOrFail($leave->task_id)->name }}</td>
         <td>{{ $leave->start_date }}</td>
         <td>{{ $leave->end_date }}</td>
         <td>{{ $leave->status }}</td>

@@ -29,21 +29,21 @@ class RequestsController extends Controller
         return view('requests.index', compact('current','history'));
     }
     public function show($id){
-        $leave = Leave::find($id);
+        $leave = Leave::findOrFail($id);
 
-        $leave_super = Leave::find($id);
-        $super = User::where('id',$leave_super->user_id)->get()->first()->supervisor_id;
+        $leave_super = Leave::findOrFail($id);
+        $super = User::findOrFail($leave_super->user_id)->get()->first()->supervisor_id;
         $me = Auth::User()->id;
         return view('requests.show',compact('leave','super','me'));
 
     }
     public function approved($id){
         $me = Auth::User();
-        $leave = Leave::find($id);
-        $super = User::find($leave->user_id)->supervisor_id;
+        $leave = Leave::findOrFail($id);
+        $super = User::findOrFail($leave->user_id)->supervisor_id;
 
         if ($me->id == $super){
-            Leave::find($id)->update(['status'=>'approved']);
+            Leave::findOrFail($id)->update(['status'=>'approved']);
             return redirect('/requests');
         }else{
             return redirect('/');
@@ -51,11 +51,11 @@ class RequestsController extends Controller
     }
     public function rejected($id){
         $me = Auth::User();
-        $leave = Leave::find($id);
-        $super = User::find($leave->user_id)->supervisor_id;
+        $leave = Leave::findOrFail($id);
+        $super = User::findOrFail($leave->user_id)->supervisor_id;
 
         if ($me->id == $super){
-            Leave::find($id)->update(['status'=>'rejected']);
+            Leave::findOrFail($id)->update(['status'=>'rejected']);
             return redirect('/requests');
         }else{
             return redirect('/');
