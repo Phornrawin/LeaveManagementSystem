@@ -48,7 +48,7 @@ Leave Management System
             @else
                 <div class="card-body">
                     <p class="card-text">You do not have any leaves.</p>
-                    <a href="/leaves/create" class="btn btn-outline-warning">create new leave request.</a>
+                    <a href="/myrequests/create" class="btn btn-outline-warning">create new leave request.</a>
                 </div>
             @endif
         </div>

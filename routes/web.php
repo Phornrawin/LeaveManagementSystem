@@ -63,6 +63,7 @@ Route::get('/requests/{id}','RequestsController@show');
 Route::get('/requests/{id}/approved','RequestsController@approved');
 Route::get('/requests/{id}/rejected','RequestsController@rejected');
 Route::get('/myrequests','MyRequestsController@index');
+Route::get('/myrequests/create','MyRequestsController@create');
 Route::get('/myrequests/{id}/cancel','MyRequestsController@update');
 
 
