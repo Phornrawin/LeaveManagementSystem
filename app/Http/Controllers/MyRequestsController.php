@@ -39,4 +39,12 @@ class MyRequestsController extends Controller
             return redirect('/');
         }
     }
+
+    public function create() {
+        return "haha";
+    }
+    
+    public function store(Request $request) {
+        return "haha";
+    }
 }
