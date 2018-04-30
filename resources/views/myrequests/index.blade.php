@@ -14,6 +14,7 @@ use Illuminate\Support\Facades\DB;
         <th scope="col">Start</th>
         <th scope="col">End</th>
         <th scope="col">Status</th>
+
         <th scope="col">Cancel</th>
       </tr>
     </thead>
@@ -27,14 +28,11 @@ use Illuminate\Support\Facades\DB;
         <td>{{ $leave->end_date }}</td>
         <td>{{ $leave->status }}</td>
         <td>
+        @if (($leave->status == 'new')||($leave->status == 'wait for approval') )
         <a href="{{ url('/myrequests/' . $leave->id.'/cancel') }}">
             Cancel
           </a>
-        </td>
-        <td>
-        <a href="{{ url('/leaves/' . $leave->id) }}">
-            View
-          </a>
+        @endif
         </td>
       </tr>
       @endforeach
