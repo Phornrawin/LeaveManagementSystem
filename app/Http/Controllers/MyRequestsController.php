@@ -41,7 +41,10 @@ class MyRequestsController extends Controller
     }
 
     public function create() {
-        return "haha";
+        $users = \Auth::user()->subordinates;
+        $tasks = \Auth::user()->tasks;
+        $categories = \App\Category::all();
+        return view('myrequests.create', compact('users', 'tasks', 'categories'));
     }
     
     public function store(Request $request) {
