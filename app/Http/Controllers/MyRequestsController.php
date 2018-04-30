@@ -41,15 +41,22 @@ class MyRequestsController extends Controller
     }
 
     public function create() {
-        $users = \Auth::user()->subordinates;
-        $tasks = \Auth::user()->tasks;
+        $users = Auth::user()->subordinates;
+        $tasks = Auth::user()->tasks;
         $categories = \App\Category::all();
         return view('myrequests.create', compact('users', 'tasks', 'categories'));
     }
     
     public function store(Request $request) {
+        $validatedData = $request->validate([
+            'substitute_id' => 'required|exist:users,id',
+            'category_id' => 'required|exist:categories,id',
+            'task_id' => 'required|exist:tasks,id',
+            'start_date' => 'required|date',
+            'end_date' => 'required|date',
+        ]);
         $leave = new Leave;
-        $leave->user_id = $request->input('user_id');
+        $leave->user_id = Auth::user();
         $leave->substitute_id = $request->input('substitute_id');
         $leave->category_id = $request->input('category_id');
         $leave->task_id = $request->input('task_id');
@@ -57,6 +64,6 @@ class MyRequestsController extends Controller
         $leave->end_date = $request->input('end_date');
         $leave->status = $request->input('status');
         $leave->save();
-        return "haha";
+        return redirect('/myrequests/'.$leave->id);
     }
 }
