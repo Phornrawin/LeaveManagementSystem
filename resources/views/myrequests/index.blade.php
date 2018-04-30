@@ -4,7 +4,8 @@
 <php 
 use Illuminate\Support\Facades\DB;
 ?>
-<h1>Current</h1>
+<h1>My leave Requests</h1><br>
+<h2>Current</h2>
 <table class="table table-hover" style="margin-top: 50px">
     <thead>
       <tr class="table-primary">
@@ -39,7 +40,7 @@ use Illuminate\Support\Facades\DB;
     </tbody>
   </table>
   <!-- /////////////////////////////////////////////////////////////////////// -->
- <br><h1>History</h1>
+ <br><h2>History</h2>
 <table class="table table-hover" style="margin-top: 50px">
     <thead>
       <tr class="table-primary">        

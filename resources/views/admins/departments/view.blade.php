@@ -14,11 +14,9 @@
 	              Users
 	            </a>
 	            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-	              <a class="dropdown-item" href="/admins/users/create">Create users</a>
-	              <a class="dropdown-item" href="/admins/user/view">View all users</a>
-	              <div class="dropdown-divider"></div>
-	              <a class="dropdown-item" href="#">Delect users</a>
-	            </div>
+	              <a class="dropdown-item" href="/admin/users/create">Create users</a>
+	              <a class="dropdown-item" href="/admin/users/view">View all users</a>
+	 
 	        </li>
 	        <a class="nav-link" id="v-pills-settings-tab" data-toggle="pill" href="#v-pills-settings" role="tab" aria-controls="v-pills-settings" aria-selected="false">Categories</a>
 	    </div>
@@ -33,7 +31,7 @@
 			  <div class="form-row align-items-center">
 			    	<h4 style="margin: 5px">Create department : </h4>
 				      <label class="sr-only" for="inlineFormInput">Create department</label>
-				      <input type="text" name="name" style="margin: 5px" class="form-control mb-1" id="inlineFormInput" placeholder="departname's name...">
+				      <input type="text" name="name" style="margin: 5px" class="form-control " id="inlineFormInput" placeholder="departname's name...">
 				      <button type="submit" style="margin: 5px" class="btn btn-primary mb-2">Submit</button>
 			  </div>
 	
@@ -61,7 +59,7 @@
 			          </a>
 			        </td>
 			        <td>
-			            <a href="/admins/departments/{{$department->id}}/edit" class="btn btn-warning" role="button">Edit</a>
+			            <a href="/admin/departments/{{$department->id}}/edit" class="btn btn-warning" role="button">Edit</a>
 			        </td>
 			        <td>
 			             <form style="margin:0px" name="name" action="/admin/departments/{{ $department->id }}" method="post">
