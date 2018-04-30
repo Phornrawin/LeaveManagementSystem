@@ -1,7 +1,6 @@
 @extends('layouts.user')
 
 @section('main')
-{{ $users }}
 <table class="table table-hover" style="margin-top: 50px">
     <thead>
       <tr class="table-primary">
@@ -22,14 +21,10 @@
         <td scope="row">
             {{ $leave->id }}
         </td>
-        <td>
-          
-            {{ $leave->user_id  }}
-          
-        </td>
-        <td>{{ $leave->substitute_id }}</td>
-        <td>{{ $leave->category_id }}</td>
-        <td>{{ $leave->task_id }}</td>
+        <td>{{ DB::table('users')->where('id',$leave->user_id)->first()->firstname }}</td>
+        <td>{{ DB::table('users')->where('id',$leave->substitute_id)->first()->firstname }}</td>
+        <td>{{ DB::table('categories')->where('id',$leave->category_id)->first()->name }}</td>
+        <td>{{ DB::table('tasks')->where('id',$leave->task_id)->first()->name }}</td>
         <td>{{ $leave->start_date }}</td>
         <td>{{ $leave->end_date }}</td>
         <!-- <td>{{ $leave->status }}</td> -->
