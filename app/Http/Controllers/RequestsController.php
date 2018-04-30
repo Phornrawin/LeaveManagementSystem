@@ -35,7 +35,11 @@ class RequestsController extends Controller
     }
     public function show($id){
         $leave = DB::table('leaves')->find($id);
-        return view('requests.show',compact('leave'));
+
+        $leave_super = DB::table('leaves')->where('id',$id)->get()->first();
+        $super = DB::table('users')->where('id',$leave_super->user_id)->get()->first()->supervisor_id;
+        $me = Auth::User()->id;
+        return view('requests.show',compact('leave','super','me'));
 
     }
     public function approved($id){

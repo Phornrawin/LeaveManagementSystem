@@ -9,8 +9,11 @@
         {{ $leave->start_date }}
         {{ $leave->end_date }}
         {{ $leave->status }}</div>
+
+        @if ($leave->status == 'wait for approval' and $me == $super  )
         <a class="btn btn-primary" href="{{ url('/requests/' . $leave->id) .'/approved'}}" >Approved</a>
         <a class="btn btn-primary" href="{{ url('/requests/' . $leave->id) .'/rejected'}}" >Rejected</a>
+        @endif
 
 
 @endsection
