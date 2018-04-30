@@ -66,18 +66,16 @@
         </div>
         <div class="col-sm-4">
           <div class="row text-center">
-            <form action="/substitutions" method="post" class="mr-2">
+            <form action="/substitutions/{{ $leave->id }}" method="post" class="mr-2">
               @method('PUT')
               @csrf
-              <input type="hidden" name="status" value="approved">
-              <input type="hidden" name="leave_id" value="{{ $leave->id }}">
+              <input type="hidden" name="status" value="accept">
               <button type="submit" class="btn btn-success" style="height: 100px; font-size: 28px"><i class="far fa-check-square"></i>&nbsp; ACCEPT</button>
             </form>
-            <form action="/substitutions" method="post">
+            <form action="/substitutions/{{ $leave->id }}" method="post">
               @method('PUT')
               @csrf
-              <input type="hidden" name="status" value="rejected">
-              <input type="hidden" name="leave_id" value="{{ $leave->id }}">
+              <input type="hidden" name="status" value="reject">
               <button type="submit" class="btn btn-danger" style="height: 100px; font-size: 28px"><i class="far fa-times-circle"></i></i>&nbsp; REJECT</button>
             </form>
           </div>
