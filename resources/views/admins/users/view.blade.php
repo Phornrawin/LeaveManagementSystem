@@ -14,10 +14,8 @@
 	              Users
 	            </a>
 	            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-	              <a class="dropdown-item" href="/admins/users/create">Create users</a>
-	              <a class="dropdown-item" href="/admins/user/view">View all users</a>
-	              <div class="dropdown-divider"></div>
-	              <a class="dropdown-item" href="#">Delect users</a>
+	              <a class="dropdown-item" href="/admin/users/create">Create users</a>
+	              <a class="dropdown-item" href="/admin/users/view">View all users</a>
 	            </div>
 	        </li>
 	        <a class="nav-link" href="#" role="tab"  aria-selected="false">Categories</a>
@@ -35,7 +33,6 @@
 	        <th>Frist name</th>
 	        <th>Last name</th>
 	        <th>E-mail</th>
-	        <th>Gender</th>
 	        <th>Tel</th>
 	        <th>Department</th>
 	        <th>Position</th>
@@ -62,11 +59,6 @@
 			        </td>
 			        <td>
 			          <a>
-			            {{ $user->gender }}
-			          </a>
-			        </td>
-			        <td>
-			          <a>
 			            {{ $user->tel }}
 			          </a>
 			        </td>
@@ -81,7 +73,7 @@
 			          </a>
 			        </td>
 			        <td>
-			            <a href="/admins/users/{{$user->id}}/edit" class="btn btn-warning" role="button">Edit</a>
+			            <a href="/admin/users/{{$user->id}}/edit" class="btn btn-warning" role="button">Edit</a>
 			        </td>
 			        <td>
 			             <form style="margin:0px" name="name" action="/admin/users/{{ $user->id }}" method="post">
