@@ -38,6 +38,37 @@ class DepartmentsController extends Controller
             return back()->withInput();
         }
     }
+
+    public function edit(Department $department)
+    {
+        return view('admins.departments.edit', compact("department"));
+    }
+    /**
+     * Update the specified resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @param  \App\Project  $project
+     * @return \Illuminate\Http\Response
+     */
+    public function update(Request $request, Department $department)
+    {
+        $validatedData = $request->validate([
+            'name' => "required|max:255|min:4|unique:departments,name,$department->id"
+        ]);
+        try{
+            $department->name = $request->input("name");
+            $department->save();
+            return redirect("/admin/departments/view");
+        }catch(Exception $e){
+            return back()->withInput();
+        }
+    }
+
+    public function destroy(Department $department)
+    {
+        $department->delete();
+        return redirect("/admin/departments/view");
+    }
 //     public function edit() {
 //         $user = Auth::user();
 //         return view('profiles.edit', compact('user'));

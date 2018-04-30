@@ -42,8 +42,9 @@
 		<br>
 		<!-- Department table -->
 		
-            
-	  <table class="table table-bordered table-hover table-striped">
+
+	<div class="contrainer">
+		 <table class="table table-hover table-bordered table-striped">
 	    <thead>
 	      <tr>
 	        <th>id</th>
@@ -59,17 +60,23 @@
 			            {{ $department->name }}
 			          </a>
 			        </td>
-			        <!-- <td>
-			             <form style="margin:0px" action="/department/{{ $department->id }}" method="post">
+			        <td>
+			            <a href="/admin/departments/{{$department->id}}/edit" class="btn btn-warning" role="button">Edit</a>
+			        </td>
+			        <td>
+			             <form style="margin:0px" name="name" action="/admin/departments/{{ $department->id }}" method="post">
 			                @csrf
 			                @method("DELETE")
 			                <button class="btn btn-danger" role="button" type="summit">Delete</button>            
 			              </form>
-          			</td> -->
+          			</td>
 	    	</tr>
 	    	 @endforeach
 	    </tbody>
 	  </table>
+	</div>
+            
+	 
 		
 	</div>
 </div>
