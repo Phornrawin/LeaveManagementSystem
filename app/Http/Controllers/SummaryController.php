@@ -45,4 +45,16 @@ class SummaryController extends Controller
 
         return view('summary.month', compact('details', 'date', 'dayOfWeek', 'year', 'month'));
     }
+
+    public function day($year, $month, $day) {
+        if ($day > cal_days_in_month(CAL_GREGORIAN, $month, $year) or $day <= 0) {
+            abort(404);
+        }
+        $subordinates = \Auth::user()->subordinates;
+        $sub_ids = $subordinates->pluck('id')->toArray();
+        $leaves = \App\Leave::onDate($year.'-'.$month.'-'.$day)->whereIn('id', $sub_ids)->get();
+        $date = date("d F Y", strtotime($year.'-'.$month.'-'.$day));
+        
+        return view('summary.day', compact('subordinates', 'leaves', 'year', 'month', 'day'));
+    }
 }

@@ -17,6 +17,7 @@ Route::put('/edit', 'HomeController@update');
 
 Route::get('/summary/{year?}', 'SummaryController@year')->where('year', '[0-9]+');
 Route::get('/summary/{year}/{month}', 'SummaryController@month')->where(['year' => '[0-9]+', 'month' => '[1-9]|0[1-9]|1[0-2]']);
+Route::get('/summary/{year}/{month}/{day}', 'SummaryController@day')->where(['year' => '[0-9]+', 'month' => '[1-9]|0[1-9]|1[0-2]', 'day'=>'[1-2][0-9]|[0-9]|3[0-1]']);
 
 Auth::routes();
 

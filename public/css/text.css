@@ -1,0 +1,42 @@
+.topic {
+	padding-left: 100px;
+	line-height: 10px;
+}
+
+.main-content {
+	padding-left: 30px;
+}
+
+p.main-topic a {
+	font-size: 20px;
+}
+
+p.minor-topic a {
+	font-size: 15px;
+	padding-left: 30px;
+}
+
+h4.minor-topic {
+	padding-top: 10px;
+	padding-left: 30px;
+}
+
+h5.sub-minor-topic {
+	padding-left: 60px;
+}
+
+p.explanation {
+	padding-left: 30px;
+	margin-bottom: 20px;
+}
+
+span.method {
+	color: red;
+}
+
+.jumptarget::before {
+  content:"";
+  display:block;
+  height: 100px; /* fixed header height*/
+  margin: -100px 0 0; /* negative fixed header height */
+}
