@@ -41,6 +41,8 @@ Route::get('/admin/departments/{department}/edit', 'Admins\Departments\Departmen
 Route::put('/admin/departments/{department}', 'Admins\Departments\DepartmentsController@update');
 Route::delete('/admin/departments/{department}', 'Admins\Departments\DepartmentsController@destroy');
 
+Route::get('admin/users/view', 'Admins\Users\UsersController@index')->name('view');
+
 
 Route::get('{folder}/{filename}', function ($folder, $filename)
 {

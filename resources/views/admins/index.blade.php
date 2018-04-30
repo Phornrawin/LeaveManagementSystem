@@ -13,8 +13,8 @@
               Users
             </a>
             <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-              <a class="dropdown-item" href="/admins/users/create">Create users</a>
-              <a class="dropdown-item" href="/admins/user/view">View all users</a>
+              <a class="dropdown-item" href="/admin/users/create">Create users</a>
+              <a class="dropdown-item" href="/admin/users/view">View all users</a>
               <div class="dropdown-divider"></div>
               <a class="dropdown-item" href="#">Delect users</a>
             </div>
