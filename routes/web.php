@@ -25,17 +25,14 @@ Route::get('/subs/{user}', 'SubordinateController@show')->where('user', '[0-9]+'
 Route::post('/subs/{user}', 'SubordinateController@store')->where('user', '[0-9]+');
 Route::put('/subs/{user}', 'SubordinateController@update')->where('user', '[0-9]+');
 Route::get('/subs/assign', 'SubordinateController@create');
-<<<<<<< HEAD
 Route::post('/subs/assign', 'SubordinateController@assignTask');
 //get file from storage
 //this should be at bottom of the file
-=======
 
 
 Route::get('/admin', 'AdminsController@index')->name('admin');
 
 
->>>>>>> f9ee16973bfe0a7bea20858daeca8847187e3207
 Route::get('{folder}/{filename}', function ($folder, $filename)
 {
     $path = storage_path('app/public/'.$folder.'/' . $filename);
@@ -49,14 +46,9 @@ Route::get('{folder}/{filename}', function ($folder, $filename)
     $response->header("Content-Type", $type);
 
     return $response;
-<<<<<<< HEAD
-});
-=======
 
 });
 
 Route::get('/admin/login', 'AdminsController@index')->name('admin');
 
 Route::get('/home', 'HomeController@index')->name('home');
-
->>>>>>> f9ee16973bfe0a7bea20858daeca8847187e3207
