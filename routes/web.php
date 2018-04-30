@@ -82,3 +82,5 @@ Route::get('{folder}/{filename}', function ($folder, $filename)
     return $response;
 
 
+});
+
