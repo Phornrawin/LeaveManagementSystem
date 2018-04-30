@@ -37,15 +37,19 @@ Route::put('/substitutions', 'SubordinateController@update');
 //this should be at bottom of the file
 
 
-Route::get('/admin', 'Admins\AdminsController@index')->name('admin');
-Route::get('/admin/departments/view', 'Admins\Departments\DepartmentsController@index')->name('view');
+Route::get('/admin', 'Admins\AdminsController@index');
+Route::get('/admin/departments/view', 'Admins\Departments\DepartmentsController@index');
 Route::post('/admin/departments/view', 'Admins\Departments\DepartmentsController@store');
 Route::get('/admin/departments/{department}/edit', 'Admins\Departments\DepartmentsController@edit');
 Route::put('/admin/departments/{department}', 'Admins\Departments\DepartmentsController@update');
 Route::delete('/admin/departments/{department}', 'Admins\Departments\DepartmentsController@destroy');
 
-Route::get('admin/users/view', 'Admins\Users\UsersController@index')->name('view');
-
+Route::get('/admin/users/view', 'Admins\Users\UsersController@index');
+Route::get('/admin/users/{user}/edit', 'Admins\Users\UsersController@edit');
+Route::get('/admin/users/create','Admins\Users\UsersController@create');
+Route::post('/admin/users/create', 'Admins\Users\UsersController@store');
+Route::put('/admin/users/{user}', 'Admins\Users\UsersController@update');
+Route::delete('/admin/users/{user}', 'Admins\Users\UsersController@destroy');
 
 
 
@@ -80,7 +84,9 @@ Route::get('{folder}/{filename}', function ($folder, $filename)
 <<<<<<< HEAD
 });
 =======
+
 });
+
 
 
 
@@ -90,4 +96,5 @@ Route::get('/home', 'HomeController@index')->name('home');
 Route::get('/requests','RequestsController@index');
 Route::get('/myrequests','MyRequestsController@index');
 Route::get('/myrequests/{id}/cancel','MyRequestsController@update');
->>>>>>> 612be6090c17bb0252ca3514a9238a211446a630
+
+>>>>>>> 07ce3dd3367ad33549dedc2f102a0f9e8e2896cf
