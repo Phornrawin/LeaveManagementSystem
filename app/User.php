@@ -71,4 +71,8 @@ class User extends Authenticatable
     public function isAdmin() {
         return $this->is_admin;
     }
+
+    public function getFullNameAttribute() {
+        return ($user->gender=="male" ? "Mr." : "Ms.")." ".$user->firstname." ".$user->lastname;
+    }
 }
