@@ -14,29 +14,23 @@
         <th scope="col">Task</th>
         <th scope="col">Start Date</th>
         <th scope="col">End Date</th>
-        <th scope="col"></th>
       </tr>
     </thead>
     <tbody>
       @foreach($current as $leave)
-      <tr class="table-secondary">
+      <tr class="table-secondary" onclick="window.location='/requests/' + {{ $leave->id }}">
         <td>{{ DB::table('users')->where('id',$leave->user_id)->first()->firstname }}</td>
         <td>{{ DB::table('users')->where('id',$leave->substitute_id)->first()->firstname }}</td>
         <td>{{ DB::table('categories')->where('id',$leave->category_id)->first()->name }}</td>
         <td>{{ DB::table('tasks')->where('id',$leave->task_id)->first()->name }}</td>
         <td>{{ $leave->start_date }}</td>
         <td>{{ $leave->end_date }}</td>
-        <!-- <td>{{ $leave->status }}</td> -->
-        <td>
-        <a href="{{ url('/requests/' . $leave->id) }}">
-            View
-          </a>
-        </td>
       </tr>
       @endforeach
     </tbody>
   </table>
 <!-- //////////////////////////////////////////////////// -->
+<br>
 <h2>History</h2>
 
 
@@ -50,12 +44,11 @@
         <th scope="col">Start Date</th>
         <th scope="col">End Date</th>
         <th scope="col">Status</th>
-        <th scope="col"></th>
       </tr>
     </thead>
     <tbody>
       @foreach($history as $leave)
-      <tr class="table-secondary">
+      <tr class="table-secondary" onclick="window.location='/requests/' + {{ $leave->id }}">
       
         <td>{{ DB::table('users')->where('id',$leave->user_id)->first()->firstname }}</td>
         <td>{{ DB::table('users')->where('id',$leave->substitute_id)->first()->firstname }}</td>
@@ -64,11 +57,6 @@
         <td>{{ $leave->start_date }}</td>
         <td>{{ $leave->end_date }}</td>
         <td>{{ $leave->status }}</td>
-        <td>
-        <a href="{{ url('/requests/' . $leave->id) }}">
-            View
-          </a>
-        </td>
       </tr>
       @endforeach
     </tbody>

@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
+use App\User;
+use App\Leave;
 
 class MyRequestsController extends Controller
 {
@@ -15,14 +17,10 @@ class MyRequestsController extends Controller
     public function index(){
         $me = Auth::User();
         $ldate = date('Y-m-d 00:00:00');
-        $current = DB::table('leaves')
-            // ->whereDate('start_date','>',$ldate)
-            ->whereIn('status',['wait for approval','new'])
+        $current = Leave::whereIn('status',['wait for approval','new'])
             ->where('user_id',$me->id)
             ->get();
-        $history = DB::table('leaves')
-            // ->whereDate('start_date','<=',$ldate)
-            ->whereIn('status',['cancel','approved','rejected','rejected by substitute'])
+        $history = Leave::whereIn('status',['cancel','approved','rejected','rejected by substitute'])
             ->where('user_id',$me->id)
             ->get();
         
@@ -31,9 +29,9 @@ class MyRequestsController extends Controller
 
     public function update($id){
         $me = Auth::User();
-        $leave = DB::table('leaves')->find($id);
-        if ($me->id == $leave->user_id){
-            DB::table('leaves')->where('id',$id)->update(['status'=>'cancel']);
+        $leave = Leave::find($id);
+        if ($me->id == $leave->user()){
+            Leave::find($id)->update(['status'=>'cancel']);
             return redirect('/myrequests');
         }else{
             return redirect('/');
