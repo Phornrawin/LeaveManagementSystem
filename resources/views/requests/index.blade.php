@@ -38,7 +38,7 @@
     <thead>
       <tr class="table-primary">
         <th scope="col">User</th>
-        <th scope="col">substitute</th>
+        <th scope="col">Substitute</th>
         <th scope="col">Category</th>
         <th scope="col">Task</th>
         <th scope="col">Start Date</th>
