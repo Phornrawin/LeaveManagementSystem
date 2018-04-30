@@ -21,7 +21,7 @@
     <form action="/myrequests/create" method="post">
       @csrf
       <div class="row">
-        <div class="col-sm-3" id="div-category">
+        <div class="col-sm-4" id="div-category">
           <label for="select-category">Select Category</label>
           <select name="category_id" class="form-control" id="select-category">
             <option value="" selected disabled hidden>Choose here</option>
@@ -35,9 +35,9 @@
           </select>
         </div>
       </div>
-      <br><br>
+      <br>
       <div class="row">
-        <div class="col-sm-3" id="div-substitute">
+        <div class="col-sm-4" id="div-substitute">
           <label for="select-substitute">Select Substitute</label>
           <select name="substitute_id" class="form-control" id="select-substitute">
             <option value="" selected disabled hidden>Choose here</option>
@@ -50,7 +50,7 @@
             @endforeach
           </select>
         </div>
-        <div class="col-sm-3" id="div-task">
+        <div class="col-sm-4" id="div-task">
           <label for="select-task">Select Task</label>
           <select name="task_id" class="form-control" id="select-task">
             <option value="" selected disabled hidden>Choose here</option>
@@ -64,24 +64,43 @@
           </select>
         </div>
       </div>
-      <br><br>
+      <br>
       <div class="row">
-        <div class="col-sm-3">
+        <div class="col-sm-4">
           <label for="input-start">Start Date</label>
           <input name="start_date" class="form-control" type="date" id="input-start">
-          <script>
-            document.querySelector("#input-start").valueAsDate = new Date(new Date().getTime() + 24 * 60 * 60 * 1000);
-          </script>
         </div>
-        <div class="col-sm-3">
+        <div class="col-sm-4">
           <label for="input-start">End Date</label>
           <input name="end_date" class="form-control" type="date" id="input-end">
         </div>
-        <div class="col-sm-3">
-          <button type="submit" class="btn btn-primary m-3" style="font-size: 26px"><i class="far fa-plus-square"></i>&nbsp;SUBMIT</button>
+      </div>
+      <br><br>
+      <div class="row">
+        <div class="col-md-4"></div>
+        <div class="col-sm-4 text-right ">
+          <button type="submit" class="btn btn-primary" style="font-size: 26px"><i class="far fa-plus-square"></i>&nbsp;SUBMIT</button>
         </div>
       </div>
     </form>
   </div>
 </div>
+<script>
+var today = new Date();
+var dd = today.getDate() + 1;
+var mm = today.getMonth() + 1;
+var yyyy = today.getFullYear();
+if (dd < 10) {
+  dd = '0' + dd;
+}
+if (mm < 10) {
+  mm = '0' + mm;
+}
+today = yyyy + '-' + mm + '-' + dd;
+document.getElementById("input-start").setAttribute("min", today);
+document.getElementById("input-start").addEventListener('change', function() {
+  document.getElementById("input-end").value = null;
+  if (document.getElementById("input-start").value) document.getElementById("input-end").min = document.getElementById("input-start").value;
+}, false);
+</script>
 @endsection
