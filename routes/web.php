@@ -30,20 +30,41 @@ Route::post('/subs/assign', 'SubordinateController@assignTask');
 
 Route::get('/substitutions', 'SubstitutionsController@index');
 Route::get('/substitutions/{leave}', 'SubstitutionsController@show')->where('leave', '[0-9]+');
+Route::put('/substitutions', 'SubordinateController@update');
 
 
 //get file from storage
 //this should be at bottom of the file
 
 
-Route::get('/admin', 'Admins\AdminsController@index')->name('admin');
-Route::get('/admin/departments/view', 'Admins\Departments\DepartmentsController@index')->name('view');
+Route::get('/admin', 'Admins\AdminsController@index');
+Route::get('/admin/departments/view', 'Admins\Departments\DepartmentsController@index');
 Route::post('/admin/departments/view', 'Admins\Departments\DepartmentsController@store');
 Route::get('/admin/departments/{department}/edit', 'Admins\Departments\DepartmentsController@edit');
 Route::put('/admin/departments/{department}', 'Admins\Departments\DepartmentsController@update');
 Route::delete('/admin/departments/{department}', 'Admins\Departments\DepartmentsController@destroy');
 
-Route::get('admin/users/view', 'Admins\Users\UsersController@index')->name('view');
+Route::get('/admin/users/view', 'Admins\Users\UsersController@index');
+Route::get('/admin/users/{user}/edit', 'Admins\Users\UsersController@edit');
+Route::get('/admin/users/create','Admins\Users\UsersController@create');
+Route::post('/admin/users/create', 'Admins\Users\UsersController@store');
+Route::put('/admin/users/{user}', 'Admins\Users\UsersController@update');
+Route::delete('/admin/users/{user}', 'Admins\Users\UsersController@destroy');
+
+
+
+
+Route::get('/home', 'HomeController@index')->name('home');
+
+//request 
+
+Route::get('/requests/','RequestsController@index');
+Route::get('/requests/{id}','RequestsController@show');
+Route::get('/requests/{id}/approved','RequestsController@approved');
+Route::get('/requests/{id}/rejected','RequestsController@rejected');
+Route::get('/myrequests','MyRequestsController@index');
+Route::get('/myrequests/{id}/cancel','MyRequestsController@update');
+
 
 
 Route::get('{folder}/{filename}', function ($folder, $filename)
@@ -60,7 +81,9 @@ Route::get('{folder}/{filename}', function ($folder, $filename)
 
     return $response;
 
+
 });
+
 
 
 
@@ -70,3 +93,4 @@ Route::get('/home', 'HomeController@index')->name('home');
 Route::get('/requests','RequestsController@index');
 Route::get('/myrequests','MyRequestsController@index');
 Route::get('/myrequests/{id}/cancel','MyRequestsController@update');
+

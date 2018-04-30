@@ -59,7 +59,7 @@ class SubstitutionsController extends Controller
     if ($leave->substitute_id !== \Auth::user()->id) {
       abort(404);
     }
-    return view('substitutions.show', [ '$leave' => $leave ]);
+    return view('substitutions.show', [ 'leave' => $leave ]);
   }
 
   /**

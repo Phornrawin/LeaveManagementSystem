@@ -70,8 +70,6 @@
             <div class="dropdown-menu" aria-labelledby="navbarDropdown">
               <a class="dropdown-item" href="/admin/users/create">Create users</a>
               <a class="dropdown-item" href="/admin/users/view">View all users</a>
-              <div class="dropdown-divider"></div>
-              <a class="dropdown-item" href="#">Delect users</a>
             </div>
         </li>
         <a class="nav-link" id="v-pills-settings-tab" data-toggle="pill" href="#v-pills-settings" role="tab" aria-controls="v-pills-settings" aria-selected="false">Categories</a>
