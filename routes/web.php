@@ -15,7 +15,8 @@ Route::get('/', 'HomeController@index');
 Route::get('/edit', 'HomeController@edit');
 Route::put('/edit', 'HomeController@update');
 
-Route::get('/summary/{year?}/{month?}', 'SummaryController@index')->where(['year' => '[0-9]+', 'month' => '[1-9]|0[1-9]|1[0-2]']);
+Route::get('/summary/{year?}', 'SummaryController@year')->where('year', '[0-9]+');
+Route::get('/summary/{year}/{month}', 'SummaryController@month')->where(['year' => '[0-9]+', 'month' => '[1-9]|0[1-9]|1[0-2]']);
 
 Auth::routes();
 
@@ -24,6 +25,9 @@ Route::get('/subs/{user}', 'SubordinateController@show')->where('user', '[0-9]+'
 Route::post('/subs/{user}', 'SubordinateController@store')->where('user', '[0-9]+');
 Route::put('/subs/{user}', 'SubordinateController@update')->where('user', '[0-9]+');
 Route::get('/subs/assign', 'SubordinateController@create');
+Route::post('/subs/assign', 'SubordinateController@assignTask');
+//get file from storage
+//this should be at bottom of the file
 
 
 Route::get('/admin', 'Admins\AdminsController@index')->name('admin');
@@ -50,4 +54,3 @@ Route::get('{folder}/{filename}', function ($folder, $filename)
 
 
 Route::get('/home', 'HomeController@index')->name('home');
-
