@@ -122,18 +122,15 @@
                   <th scope="col">Category</th>
                   <th scope="col">Task</th>
                   <th scope="col">Period</th>
+                  <th scope="col">Start Date</th>
                   <th>Status</th>
                 </tr>
               </thead>
               <tbody>
                 @foreach($leaves as $leave)
-                <tr class="table-default">
+                <tr class="table-default" onclick="window.location='/requests/' + {{ $leave->id }}">
                   <td scope="row">{{ $leave->id }}</td>
-                  <td>
-                    <a href="">
-                      {{ $leave->substitute()->first()->firstname . " " . $leave->substitute()->first()->lastname }}
-                    </a>
-                  </td>
+                  <td>{{ $leave->substitute()->first()->fullName }}</td>
                   <td>{{ $leave->category()->first()->name }}</td>
                   <td>{{ $leave->task()->first()->name }}</td>
                   <td>
@@ -143,6 +140,7 @@
                     echo date_diff($start, $end)->format("%a days");
                     ?>
                   </td>
+                  <td>{{ $leave->start_date }}</td>
                   <td>{{ $leave->status }}</td>
                 </tr>
                 @endforeach

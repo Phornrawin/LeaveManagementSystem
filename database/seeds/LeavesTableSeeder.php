@@ -11,6 +11,6 @@ class LeavesTableSeeder extends Seeder
      */
     public function run()
     {
-        factory(App\Leave::class, 15)->create();
+        factory(App\Leave::class, 150)->create();
     }
 }

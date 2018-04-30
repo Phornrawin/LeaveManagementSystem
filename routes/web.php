@@ -17,7 +17,7 @@ Route::put('/edit', 'HomeController@update');
 
 Route::get('/summary/{year?}', 'SummaryController@year')->where('year', '[0-9]+');
 Route::get('/summary/{year}/{month}', 'SummaryController@month')->where(['year' => '[0-9]+', 'month' => '[1-9]|0[1-9]|1[0-2]']);
-Route::get('/summary/{year}/{month}/{day}', 'SummaryController@day')->where(['year' => '[0-9]+', 'month' => '[1-9]|0[1-9]|1[0-2]', 'day'=>'[1-2][0-9]|[0-9]|3[0-1]']);
+Route::get('/summary/{year}/{month}/{day}', 'SummaryController@day')->where(['year' => '[0-9]+', 'month' => '[1-9]|0[1-9]|1[0-2]', 'day'=>'[1-2][0-9]|0[0-9]|3[0-1]|[0-9]']);
 
 Auth::routes();
 
@@ -30,7 +30,7 @@ Route::post('/subs/assign', 'SubordinateController@assignTask');
 
 Route::get('/substitutions', 'SubstitutionsController@index');
 Route::get('/substitutions/{leave}', 'SubstitutionsController@show')->where('leave', '[0-9]+');
-Route::put('/substitutions', 'SubordinateController@update');
+Route::put('/substitutions/{leave}', 'SubstitutionsController@update')->where('leave', '[0-9]+');
 
 
 //get file from storage
@@ -69,6 +69,8 @@ Route::get('/requests/{id}','RequestsController@show');
 Route::get('/requests/{id}/approved','RequestsController@approved');
 Route::get('/requests/{id}/rejected','RequestsController@rejected');
 Route::get('/myrequests','MyRequestsController@index');
+Route::get('/myrequests/create','MyRequestsController@create');
+Route::post('/myrequests/create','MyRequestsController@store');
 Route::get('/myrequests/{id}/cancel','MyRequestsController@update');
 
 
@@ -89,14 +91,4 @@ Route::get('{folder}/{filename}', function ($folder, $filename)
 
 
 });
-
-
-
-
-Route::get('/home', 'HomeController@index')->name('home');
-
-//request
-Route::get('/requests','RequestsController@index');
-Route::get('/myrequests','MyRequestsController@index');
-Route::get('/myrequests/{id}/cancel','MyRequestsController@update');
 

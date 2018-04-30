@@ -33,8 +33,8 @@ class SummaryController extends Controller
         $sub_count = count($sub_ids);
         $details = array();
         for($i=1;$i<=cal_days_in_month(CAL_GREGORIAN, $month, $year);$i++) {
-            $waited = \App\Leave::onMonth($year.'-'.$month)->whereIn('user_id', $sub_ids)->whereIn('status', ['new', 'wait for approval'])->onDate($year.'-'.$month.'-'.$i)->count();
-            $leaves = \App\Leave::onMonth($year.'-'.$month)->whereIn('user_id', $sub_ids)->where('status', 'approved')->onDate($year.'-'.$month.'-'.$i)->count();
+            $waited = \App\Leave::whereIn('user_id', $sub_ids)->whereIn('status', ['new', 'wait for approval'])->onDate($year.'-'.$month.'-'.$i)->count();
+            $leaves = \App\Leave::whereIn('user_id', $sub_ids)->where('status', 'approved')->onDate($year.'-'.$month.'-'.$i)->count();
             $details[] = [
                 'date' => $i,
                 'available' => $sub_count - $waited - $leaves,
@@ -52,16 +52,27 @@ class SummaryController extends Controller
         }
         $subordinates = \Auth::user()->subordinates;
         $sub_ids = $subordinates->pluck('id')->toArray();
-        $leaves = \App\Leave::onDate($year.'-'.$month.'-'.$day)->whereIn('id', $sub_ids)->get();
+        $leaves = \App\Leave::onDate($year.'-'.$month.'-'.$day)->whereIn('user_id', $sub_ids)->get();
 
-        $active = [];
-        $pending = [];
-        $absence = [];
+        $active = $subordinates;
+        $pending = collect();
+        $absence = collect();
         foreach ($leaves as $leave) {
-            // if ($leave->)
+            if ($leave->isApproved()) {
+                $absence->push($leave);
+                $active = $active->filter(function($item) use($leave){
+                    return $item->id != $leave->user->id;
+                })->values()->all();
+
+            } else if ($leave->isPending()) {
+                $pending->push($leave);
+                $active = $active->filter(function($item) use($leave){
+                    return $item->id != $leave->user->id;
+                })->values()->all();
+            }
         }
+        $count = max(count($active), count($pending), count($absence));
         $date = date("d F Y", strtotime($year.'-'.$month.'-'.$day));
-        
-        return view('summary.day', compact('subordinates', 'leaves', 'year', 'month', 'day', 'date'));
+        return view('summary.day', compact('count', 'active', 'pending', 'absence', 'year', 'month', 'day', 'date'));
     }
 }
