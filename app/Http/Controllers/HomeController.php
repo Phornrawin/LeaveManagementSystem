@@ -36,8 +36,14 @@ class HomeController extends Controller
         // return $request;
         $validatedData = $request->validate([
             'image' => 'image|mimes:jpeg,png,jpg,gif,svg',
+            'tel' => 'nullable|numeric|regex:/(0)[8-9][0-9]{8}/',
+            'line' => 'nullable',
+            'facebook' => 'nullable',
         ]);
         $user = Auth::user();
+        $user->tel = $request->tel;
+        $user->facebook = $request->facebook;
+        $user->line = $request->line;
         if ($request->hasFile('image')) {
             $image = $request->file('image');
             $extension = $image->getClientOriginalExtension();
@@ -45,9 +51,6 @@ class HomeController extends Controller
             $image->storeAs('public/profile_images', $new_name);
             $user->image = $new_name;
         }
-        $user->tel = $request->tel;
-        $user->facebook = $request->facebook;
-        $user->line = $request->line;
         $user->save();
         return redirect('/');
     }

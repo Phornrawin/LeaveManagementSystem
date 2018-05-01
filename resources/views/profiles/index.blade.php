@@ -27,10 +27,16 @@ Leave Management System
                 <h1 class="card-title">{{$user->gender=="male" ? "Mr." : "Ms."}} {{$user->firstname}} {{$user->lastname}}</h1>
                 <p class="card-text">Department: {{$user->department ? $user->department->name : 'None'}}</p>
                 <p class="card-text">Position: {{$user->position ? $user->position->name : 'None'}}</p>
+                @if($user->tel)
                 <p class="card-text"><span class="h2"><i class="fas fa-phone-square"></i></span> {{$user->tel}}</p>
+                @endif
                 <p class="card-text"><span class="h2"><i class="fas fa-envelope"></i></span> {{$user->email}}</p>
+                @if($user->line)
                 <p class="card-text"><span class="h2"><i class="fab fa-line"></i></span> {{$user->line}}</p>
+                @endif
+                @if($user->facebook)
                 <p class="card-text"><span class="h2"><i class="fab fa-facebook-square"></i></span> {{$user->facebook}}</p>
+                @endif
             </div>
         </div>
         <div class="card-footer">
