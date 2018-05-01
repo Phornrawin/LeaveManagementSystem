@@ -1,6 +1,17 @@
 @extends('layouts.master')
 
 @section('content')
+<?php
+use App\Leave;
+$me = Auth::User();
+$countReq = Leave::join('users','leaves.user_id','=','users.id')
+->select('leaves.*','users.supervisor_id','users.firstname','users.lastname')
+->where('supervisor_id',$me->id)
+->where('status','wait for approval')
+->count();
+$countSub = Leave::where('substitute_id', \Auth::user()->id)->where('status', 'new')->count();
+
+?>
     <div class="row">
         <div class="col-lg-3 col-md-4 col-sm-5 col-xs-12">
             <div class="list-group">
@@ -10,7 +21,7 @@
                     <a href="/myrequests" class="list-group-item list-group-item-action bg-light">Show all my leaves</a>
                     <a href="/myrequests/create" class="list-group-item list-group-item-action bg-light">Make new leave request</a>
                 </div>
-                <a class="list-group-item list-group-item-action collapsed" data-toggle="collapse" data-target="#collapseRequests" aria-expanded="false" aria-controls="collapseRequests">Requests to me <i class="fas fa-caret-down"></i></a>
+                <a class="list-group-item list-group-item-action collapsed" data-toggle="collapse" data-target="#collapseRequests" aria-expanded="false" aria-controls="collapseRequests">Requests to me <i class="fas fa-caret-down">{{ $countReq+$countSub }}</i></a>
                 <div id="collapseRequests" class="collapse">
                     <a href="/requests" class="list-group-item list-group-item-action bg-light">Request for leaves</a>
                     <a href="/substitutions" class="list-group-item list-group-item-action bg-light">Request for substitutions</a>

@@ -31,8 +31,11 @@ class RequestsController extends Controller
     public function show($id){
         $leave = Leave::findOrFail($id);
 
-        $leave_super = Leave::findOrFail($id);
-        $super = User::findOrFail($leave_super->user_id)->get()->first()->supervisor_id;
+        // $leave_super = Leave::findOrFail($id);
+        // $super = User::findOrFail($leave->user_id)->get()->first()->supervisor_id;
+        $leave_super = DB::table('leaves')->where('id',$id)->get()->first();
++        $super = DB::table('users')->where('id',$leave_super->user_id)->get()->first()->supervisor_id;
+        
         $me = Auth::User()->id;
         return view('requests.show',compact('leave','super','me'));
 
