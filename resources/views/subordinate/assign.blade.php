@@ -15,7 +15,9 @@
       </ul>
     </div>
     @endif
-
+    @if (count($subs) === 0)
+    <h3 class="display-5 text-muted text-center mt-5">You don't have subordinate<h3>
+    @else
     <div class="card mb-3">
       <div class="card-body">
         <form action="/subs/assign/" method="post">
@@ -93,6 +95,7 @@
         </form>
       </div>
     </div>
+    @endif
   </div>
 
 </div>
