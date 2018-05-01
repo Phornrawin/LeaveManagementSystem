@@ -19,6 +19,7 @@
 	 
 	        </li>
 	        <a class="nav-link" id="v-pills-settings-tab" data-toggle="pill" href="#v-pills-settings" role="tab" aria-controls="v-pills-settings" aria-selected="false">Categories</a>
+	        <a class="nav-link" href="/admin/positions/view" role="tab"  aria-selected="false">Positions</a>
 	    </div>
 	</div>
 	<div class="col-md-9" style="margin: 10px">

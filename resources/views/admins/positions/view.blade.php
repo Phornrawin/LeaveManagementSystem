@@ -16,68 +16,54 @@
 	            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
 	              <a class="dropdown-item" href="/admin/users/create">Create users</a>
 	              <a class="dropdown-item" href="/admin/users/view">View all users</a>
-	            </div>
+	 
 	        </li>
-	        <a class="nav-link" href="/admin/categories/view" role="tab"  aria-selected="false">Categories</a>
+	        <a class="nav-link"  href="/admin/categories/view" role="tab"  aria-selected="false">Categories</a>
 	        <a class="nav-link" href="/admin/positions/view" role="tab"  aria-selected="false">Positions</a>
 	    </div>
 	</div>
 	<div class="col-md-9" style="margin: 10px">
-		<h2>All User</h2>
+		<h2>All Position</h2>
 		<hr>
 		<br>
-		<div class="contrainer">
+		<center>
+			<form class="form-inline" action="/admin/positions/view" method="post">
+				@csrf
+			  <div class="form-row align-items-center">
+			    	<h4 style="margin: 5px">Create Position : </h4>
+				      <label class="sr-only" for="inlineFormInput">Create position</label>
+				      <input type="text" name="name" style="margin: 5px" class="form-control " id="inlineFormInput" placeholder="position's name...">
+				      <button type="submit" style="margin: 5px" class="btn btn-primary mb-2">Submit</button>
+			  </div>
+	
+			</form>
+		</center>
+		<br>
+		<!-- Department table -->
+		
+
+	<div class="contrainer">
 		 <table class="table table-hover table-bordered table-striped">
 	    <thead>
 	      <tr>
 	        <th>id</th>
-	        <th>Frist name</th>
-	        <th>Last name</th>
-	        <th>E-mail</th>
-	        <th>Tel</th>
-	        <th>Department</th>
-	        <th>Position</th>
+	        <th>Position's name</th>
 	      </tr>
 	    </thead>
 	    <tbody> 
-	    	@foreach($users as $user)
+	    	@foreach($positions as $position)
 	    	<tr>
 	    		<th scope="row">{{ $loop->iteration }}</th>
 			        <td>
 			          <a>
-			            {{ $user->firstname}}
+			            {{ $position->name }}
 			          </a>
 			        </td>
 			        <td>
-			          <a>
-			            {{ $user->lastname }}
-			          </a>
+			            <a href="/admin/positions/{{$position->id}}/edit" class="btn btn-warning" role="button">Edit</a>
 			        </td>
 			        <td>
-			          <a>
-			            {{ $user->email}}
-			          </a>
-			        </td>
-			        <td>
-			          <a>
-			            {{ $user->tel }}
-			          </a>
-			        </td>
-			        <td>
-			          <a>
-			            {{ $user->department ? $user->department->name : "None" }}
-			          </a>
-			        </td>
-			        <td>
-			          <a>
-			            {{ $user->position ? $user->position->name : "None" }}
-			          </a>
-			        </td>
-			        <td>
-			            <a href="/admin/users/{{$user->id}}/edit" class="btn btn-warning" role="button">Edit</a>
-			        </td>
-			        <td>
-			             <form style="margin:0px" name="name" action="/admin/users/{{ $user->id }}" method="post">
+			             <form style="margin:0px" name="name" action="/admin/positions/{{ $position->id }}" method="post">
 			                @csrf
 			                @method("DELETE")
 			                <button class="btn btn-danger" role="button" type="summit">Delete</button>            
@@ -87,13 +73,12 @@
 	    	 @endforeach
 	    </tbody>
 	  </table>
-	  <br>
-	  <form method="get" action="{{route("admin.users.getpdf")}}">
-            <button type="submit">Download as PDF</button>
-      </form>
 	</div>
+            
+	 
+		
+	</div>
+</div>
 
-	
-	</div>
 
 @endsection

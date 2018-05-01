@@ -57,6 +57,12 @@ Route::get('/admin/categories/{category}/edit', 'Admins\CategoriesController@edi
 Route::put('/admin/categories/{category}', 'Admins\CategoriesController@update');
 Route::delete('/admin/categories/{category}', 'Admins\CategoriesController@destroy');
 
+Route::get('/admin/positions/view', 'Admins\PositionsController@index');
+Route::post('/admin/positions/view', 'Admins\PositionsController@store');
+Route::get('/admin/positions/{position}/edit', 'Admins\PositionsController@edit');
+Route::put('/admin/positions/{position}', 'Admins\PositionsController@update');
+Route::delete('/admin/positions/{position}', 'Admins\PositionsController@destroy');
+
 Route::get('/admin/categories/getpdf', 'Admins\CategoriesController@getpdf')->name('admin.categories.getpdf');
 Route::get('/admin/users/getpdf', 'Admins\Users\UsersController@getpdf')->name('admin.users.getpdf');
 

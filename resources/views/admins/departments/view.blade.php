@@ -19,6 +19,7 @@
 	 
 	        </li>
 	        <a class="nav-link"  href="/admin/categories/view" role="tab"  aria-selected="false">Categories</a>
+	        <a class="nav-link" href="/admin/positions/view" role="tab"  aria-selected="false">Positions</a>
 	    </div>
 	</div>
 	<div class="col-md-9" style="margin: 10px">
