@@ -43,13 +43,24 @@ Create Request - Leave Management System
               <label for="select-substitute">Select Substitute</label>
               <select name="substitute_id" class="form-control" id="select-substitute">
                 <option value="" selected disabled hidden>Choose here</option>
-                @foreach($users as $user)
-                @if(old('user') == $user->fullName)
-                <option value="{{ $user->id }}" selected>{{ $user->fullName }}</option>
+                @if(count($users)==0)
+                  @foreach(\Auth::user()->supervisor->subordinates as $user)
+                    @if($user->id==\Auth::user()->id)
+                    @elseif(old('user') == $user->fullName)
+                    <option value="{{ $user->id }}" selected>{{ $user->fullName }}</option>
+                    @else
+                    <option value="{{ $user->id }}">{{ $user->fullName }}</option>
+                    @endif
+                  @endforeach
                 @else
-                <option value="{{ $user->id }}">{{ $user->fullName }}</option>
+                  @foreach($users as $user)
+                    @if(old('user') == $user->fullName)
+                    <option value="{{ $user->id }}" selected>{{ $user->fullName }}</option>
+                    @else
+                    <option value="{{ $user->id }}">{{ $user->fullName }}</option>
+                    @endif
+                  @endforeach
                 @endif
-                @endforeach
               </select>
             </div>
             <div class="col-sm-4" id="div-task">
