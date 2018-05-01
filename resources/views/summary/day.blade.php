@@ -33,8 +33,8 @@
         Summary
         <div class="detail p-1 float-right">
             <i class="fas fa-circle text-success"></i> for <i>Active Subordinates</i><br />
-            <i class="fas fa-circle text-warning"></i> for <i>Request Subordinates</i><br />
-            <i class="fas fa-circle text-danger"></i> for <i>Leave Subordinates</i>
+            <i class="fas fa-circle text-warning"></i> for <i>Requests for Leave</i><br />
+            <i class="fas fa-circle text-danger"></i> for <i>Leaves Approved</i>
         </div>
     </h1>
     <hr />
