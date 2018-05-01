@@ -18,10 +18,12 @@ class MyRequestsController extends Controller
         $me = Auth::User();
         $ldate = date('Y-m-d 00:00:00');
         $current = Leave::whereIn('status',['wait for approval','new'])
-            ->where('user_id',$me->id)
+        ->orderBy('start_date','desc')
+        ->where('user_id',$me->id)
             ->get();
         $history = Leave::whereIn('status',['cancel','approved','rejected','rejected by substitute'])
-            ->where('user_id',$me->id)
+        ->orderBy('start_date','desc')
+        ->where('user_id',$me->id)
             ->get();
 
         return view('myrequests.index',compact('current','history'));
