@@ -22,10 +22,17 @@ class SummaryController extends Controller
             $month = date('m');
             return redirect('/summary/'.$year.'/'.$month);
         }
+        if ($year < 1902) {
+            abort(404);
+        }
         return view('summary.year', compact('year'));
     }
 
     public function month($year, $month) {
+
+        if ($year < 1902) {
+            abort(404);
+        }
         $date = date('F, Y', strtotime($year.'-'.$month));
         $month = date('m', strtotime($year.'-'.$month));
         $dayOfWeek = date('w', strtotime($year.'-'.$month.'-01'));
@@ -47,6 +54,10 @@ class SummaryController extends Controller
     }
 
     public function day($year, $month, $day) {
+
+        if ($year < 1902) {
+            abort(404);
+        }
         if ($day > cal_days_in_month(CAL_GREGORIAN, $month, $year) or $day <= 0) {
             abort(404);
         }
