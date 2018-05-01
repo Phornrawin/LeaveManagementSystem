@@ -39,10 +39,28 @@ class MyRequestsController extends Controller
     }
 
     public function create() {
+        
+
         $users = Auth::user()->subordinates;
         $tasks = Auth::user()->tasks;
         $categories = \App\Category::all();
-        return view('myrequests.create', compact('users', 'tasks', 'categories'));
+        $days = array();
+        $year = date("Y");
+        foreach ($categories as $category) {
+            
+            $leaves = Leave::where("user_id", Auth::user()->id)->where("status", "approved")->where("category_id", $category->id)->where("start_date", 'like', $year.'%')->where("end_date", 'like', $year.'%')->get();
+            
+            $day = 0;
+            foreach ($leaves as $tmp) {            
+                $pos = strpos($tmp->end_date, $year);
+                if ($pos === 0) {
+                    $day += date_diff(date_create($tmp->start_date), date_create($tmp->end_date))->format("%a") + 1;
+                }
+            }
+            $days[$category->id] = $category->days - $day;
+        }
+        // return $days;
+        return view('myrequests.create', compact('users', 'tasks', 'categories', 'days'));
     }
 
     public function store(Request $request) {

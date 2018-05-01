@@ -35,6 +35,7 @@ Create Request - Leave Management System
                 @endif
                 @endforeach
               </select>
+              <span id="category_detail" class="text-danger" style="display:none">You have <span id="day_left"></span> days for this leave.</span>
             </div>
           </div>
           <br>
@@ -115,7 +116,40 @@ today = yyyy + '-' + mm + '-' + dd;
 document.getElementById("input-start").setAttribute("min", today);
 document.getElementById("input-start").addEventListener('change', function() {
   document.getElementById("input-end").value = null;
-  if (document.getElementById("input-start").value) document.getElementById("input-end").min = document.getElementById("input-start").value;
+  if (document.getElementById("input-start").value) {
+    document.getElementById("input-end").min = document.getElementById("input-start").value;
+    let tmpDate = new Date(document.getElementById("input-start").value)
+    
+    tmpDate.setDate(tmpDate.getDate() + max -1);
+    
+    var dd = tmpDate.getDate();
+    var mm = tmpDate.getMonth() + 1;
+    var yyyy = tmpDate.getFullYear();
+    if (dd < 10) {
+      dd = '0' + dd;
+    }
+    if (mm < 10) {
+      mm = '0' + mm;
+    }
+    tmpDate = yyyy + '-' + mm + '-' + dd; 
+    
+    document.getElementById("input-end").max = tmpDate;
+  }
 }, false);
 </script>
 @endsection
+
+@push('js')
+<script>
+    var days = {{str_replace('"', '', json_encode($days))}}
+    var max = 0;
+    document.getElementById("select-category").addEventListener('change', function(e) {
+      id = e.target.value
+      max = days[id]
+      document.getElementById("day_left").innerHTML = max
+      document.getElementById("category_detail").style.display = 'block';
+      document.getElementById("input-end").value = null;
+      document.getElementById("input-start").value = null;
+    }, false)
+</script>
+@endpush
