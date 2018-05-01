@@ -15,12 +15,14 @@ class RequestsController extends Controller
         $me = Auth::User();
 
         $current = Leave::join('users','leaves.user_id','=','users.id')
+        ->orderBy('start_date','desc')
             ->select('leaves.*','users.supervisor_id','users.firstname','users.lastname')
             ->where('supervisor_id',$me->id)
             ->where('status','wait for approval')
             ->get();
 
         $history = Leave::join('users','leaves.user_id','=','users.id')
+            ->orderBy('start_date','desc')
             ->select('leaves.*','users.supervisor_id','users.firstname','users.lastname')
             ->where('supervisor_id',$me->id)
             ->whereIn('status',['approved','rejected'])
@@ -34,7 +36,7 @@ class RequestsController extends Controller
         // $leave_super = Leave::findOrFail($id);
         // $super = User::findOrFail($leave->user_id)->get()->first()->supervisor_id;
         $leave_super = DB::table('leaves')->where('id',$id)->get()->first();
-+        $super = DB::table('users')->where('id',$leave_super->user_id)->get()->first()->supervisor_id;
+        $super = DB::table('users')->where('id',$leave_super->user_id)->get()->first()->supervisor_id;
         
         $me = Auth::User()->id;
         return view('requests.show',compact('leave','super','me'));
