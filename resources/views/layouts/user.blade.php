@@ -21,10 +21,24 @@ $countSub = Leave::where('substitute_id', \Auth::user()->id)->where('status', 'n
                     <a href="/myrequests" class="list-group-item list-group-item-action bg-light">Show all my leaves</a>
                     <a href="/myrequests/create" class="list-group-item list-group-item-action bg-light">Make new leave request</a>
                 </div>
-                <a class="list-group-item list-group-item-action collapsed" data-toggle="collapse" data-target="#collapseRequests" aria-expanded="false" aria-controls="collapseRequests">Requests to me <i class="fas fa-caret-down">{{ $countReq+$countSub }}</i></a>
+                <a class="list-group-item list-group-item-action collapsed" data-toggle="collapse" data-target="#collapseRequests" aria-expanded="false" aria-controls="collapseRequests">Requests to me <i class="fas fa-caret-down"></i>
+                    @if($countReq+$countSub>0)
+                    <span class="badge badge-pill badge-danger float-right"> ! </span>
+                    @endif
+                </a>
                 <div id="collapseRequests" class="collapse">
-                    <a href="/requests" class="list-group-item list-group-item-action bg-light">Request for leaves</a>
-                    <a href="/substitutions" class="list-group-item list-group-item-action bg-light">Request for substitutions</a>
+                    <a href="/requests" class="list-group-item list-group-item-action bg-light">
+                        Request for leaves
+                        @if($countReq>0)
+                        <span class="badge badge-pill badge-danger float-right"> {{ $countReq }} </span>
+                        @endif
+                    </a>
+                    <a href="/substitutions" class="list-group-item list-group-item-action bg-light">
+                        Request for substitutions
+                        @if($countSub>0)
+                        <span class="badge badge-pill badge-danger float-right"> {{ $countSub }} </span>
+                        @endif
+                    </a>
                 </div>
                 <a class="list-group-item list-group-item-action collapsed" data-toggle="collapse" data-target="#collapseSub" aria-expanded="false" aria-controls="collapseSub">My subordinates <i class="fas fa-caret-down"></i></a>
                 <div id="collapseSub" class="collapse">
