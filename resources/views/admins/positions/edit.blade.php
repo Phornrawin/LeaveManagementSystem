@@ -7,7 +7,7 @@
     <div class="container">
         <div class="row">
             <div class="col-12" style="text-align:center">
-                <h3><b>Edit Posiname name</b></h3>
+                <h3><b>Edit Position name</b></h3>
             </div>
         </div>
         <div class="row">
