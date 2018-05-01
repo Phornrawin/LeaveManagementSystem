@@ -56,25 +56,33 @@
                 </tr>
             </thead>
             <tbody>
-                @for($i=0;$i<$count;$i++)
-                <tr>
-                    <td>
-                        @if($i < count($active))
-                            <a href="/substitions/{{$active[$i]->id}}" class="text-dark">{{$active[$i]->fullName}}</a>
-                        @endif
-                    </td>
-                    <td>
-                        @if($i < count($pending))
-                            <a href="/requests/{{$pending[$i]->id}}" class="text-dark">{{$pending[$i]->user->fullName}}</a>
-                        @endif
-                    </td>
-                    <td>
-                        @if($i < count($absence))
-                            <a href="/requests/{{$absence[$i]->id}}" class="text-dark">{{$absence[$i]->user->fullName}}</a>
-                        @endif
-                    </td>
-                </tr>
-                @endfor
+                @if ($count == 0)
+                    <tr>
+                        <td colspan="3">
+                            <h2 class="text-center">You do not have subordinates.</h2>
+                        </td>
+                    </tr>
+                @else
+                    @for($i=0;$i<$count;$i++)
+                    <tr>
+                        <td>
+                            @if($i < count($active))
+                                <a href="/substitions/{{$active[$i]->id}}" class="text-dark">{{$active[$i]->fullName}}</a>
+                            @endif
+                        </td>
+                        <td>
+                            @if($i < count($pending))
+                                <a href="/requests/{{$pending[$i]->id}}" class="text-dark">{{$pending[$i]->user->fullName}}</a>
+                            @endif
+                        </td>
+                        <td>
+                            @if($i < count($absence))
+                                <a href="/requests/{{$absence[$i]->id}}" class="text-dark">{{$absence[$i]->user->fullName}}</a>
+                            @endif
+                        </td>
+                    </tr>
+                    @endfor
+                @endif
             </tbody>
         </table>
     </div>

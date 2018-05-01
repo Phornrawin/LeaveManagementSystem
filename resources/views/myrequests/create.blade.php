@@ -28,7 +28,7 @@ Create Request - Leave Management System
               <select name="category_id" class="form-control" id="select-category">
                 <option value="" selected disabled hidden>Choose here</option>
                 @foreach($categories as $category)
-                @if(old('category') == $category->name)
+                @if(old('category_id') == $category->id)
                 <option value="{{ $category->id }}" selected>{{ $category->name }}</option>
                 @else
                 <option value="{{ $category->id }}">{{ $category->name }}</option>
@@ -47,7 +47,7 @@ Create Request - Leave Management System
                 @if(count($users)==0)
                   @foreach(\Auth::user()->supervisor->subordinates as $user)
                     @if($user->id==\Auth::user()->id)
-                    @elseif(old('user') == $user->fullName)
+                    @elseif(old('substitute_id') == $user->id)
                     <option value="{{ $user->id }}" selected>{{ $user->fullName }}</option>
                     @else
                     <option value="{{ $user->id }}">{{ $user->fullName }}</option>
@@ -55,7 +55,7 @@ Create Request - Leave Management System
                   @endforeach
                 @else
                   @foreach($users as $user)
-                    @if(old('user') == $user->fullName)
+                    @if(old('substitute_id') == $user->id)
                     <option value="{{ $user->id }}" selected>{{ $user->fullName }}</option>
                     @else
                     <option value="{{ $user->id }}">{{ $user->fullName }}</option>
@@ -69,7 +69,7 @@ Create Request - Leave Management System
               <select name="task_id" class="form-control" id="select-task">
                 <option value="" selected disabled hidden>Choose here</option>
                 @foreach($tasks as $task)
-                @if(old('task') == $task->name)
+                @if(old('task_id') == $task->id)
                 <option value="{{ $task->id }}" selected>{{ $task->name }}</option>
                 @else
                 <option value="{{ $task->id }}">{{ $task->name }}</option>
@@ -82,11 +82,11 @@ Create Request - Leave Management System
           <div class="row">
             <div class="col-sm-4">
               <label for="input-start">Start Date</label>
-              <input name="start_date" class="form-control" type="date" id="input-start">
+              <input name="start_date" class="form-control" type="date" id="input-start" value="{{old('start_date')}}">
             </div>
             <div class="col-sm-4">
               <label for="input-start">End Date</label>
-              <input name="end_date" class="form-control" type="date" id="input-end">
+              <input name="end_date" class="form-control" type="date" id="input-end" value="{{old('end_date')}}">
             </div>
           </div>
           <br><br>
