@@ -30,7 +30,7 @@ class PositionsController extends Controller
             'name' => 'required|max:255|min:4'
         ]);
         try{
-            $position = new Department;
+            $position = new Position;
             $position->name = $request->input("name");
             $position->save();
             return redirect("/admin/positions/view");
