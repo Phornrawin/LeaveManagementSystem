@@ -14,7 +14,7 @@ PHP HTML JAVASCRIPT Laravel
 
 จากนั้นให้รันคำสั่ง
 ```
-composer update
+composer install
 npm install
 php artisan key:generate
 php artisan migrate --seed
