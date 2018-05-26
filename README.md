@@ -10,7 +10,7 @@ PHP HTML JAVASCRIPT Laravel
 
 ก่อนเริ่มต้นใช้งาน จะต้องทำการเตรียมโปรแกรมสำหรับรัน Localhost Web Service เช่น **Xampp** หรือ **Laragon** เป็นต้น และทำการดาวน์โหลดหรือ clone ไฟล์โปรเจคจาก github เข้าสู่เครื่องคอมพิวเตอร์ก่อน โดยหากเลือกใช้ Laragon ให้เลือกดาวน์โหลดหรือ clone ไปที่ folder laragon/www/ หรือหากใช้งาน Xampp ให้เลือกดาวน์โหลดหรือ clone ไปที่ folder Xampp/htdocs/ แล้วแก้ไขชื่อไฟล์ .env.example เป็น .env
 
-จากนั้นให้สร้าง Database และ User สำหรับเข้าถึงและแก้ไข Database ที่สร้าง นำชื่อ Database Username และ Password ไปใส่ในไฟล์ .env
+เปิดใช้งาน DatabaseServer จากนั้นให้สร้าง Database และ User สำหรับเข้าถึงและแก้ไข Database ที่สร้าง นำชื่อ Database Username และ Password ไปใส่ในไฟล์ .env
 
 จากนั้นให้รันคำสั่ง
 ```
